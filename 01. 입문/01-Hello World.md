@@ -5,7 +5,8 @@
 - 추천: IntelliJ Community Edition (무료)
 ### OS 선택
 - Mac: 대다수 기업에서 사용
-- Windows: 사용 가능, 강의에서도 배려함
+- Windows: 사용 가능
+- Linux: 사용 가능
 ### 자바 설치
 - IntelliJ에서 자동 설치 가능 (별도 설치 불필요)
 
