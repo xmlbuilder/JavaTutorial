@@ -126,6 +126,7 @@ helloshop 프로젝트의 디렉토리 구조를 트리 형태로 표현한 구�
 각 패키지와 클래스가 어떻게 구성되어 있는지 한눈에 파악할 수 있도록 정리:  
 
 ## 📦 디렉토리 구조 요약
+```
 com.helloshop
   ├── user
   │   ├── User.java
@@ -137,7 +138,7 @@ com.helloshop
       ├── Order.java
       ├── OrderService.java
       └── OrderHistory.java
-
+```
 
 
 ## 🧩 샘플 코드: OrderService 사용 예시
@@ -228,4 +229,5 @@ graph TD
 - 각 패키지는 기능 중심으로 분리되어 있어 유지보수와 확장에 유리함
 
 ---
+
 
