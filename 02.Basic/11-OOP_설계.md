@@ -289,7 +289,7 @@ classDiagram
 ---
 
 ## ✅ OCP (Open-Closed Principle) 원칙
-###🔹 정의
+### 🔹 정의
 - Open for extension: 새로운 기능을 추가할 수 있도록 열려 있어야 함
 - Closed for modification: 기존 코드를 수정하지 않도록 닫혀 있어야 함
 즉, 기존 코드를 건드리지 않고도 새로운 기능을 추가할 수 있는 구조를 의미함
