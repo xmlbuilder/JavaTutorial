@@ -137,9 +137,11 @@ System.out.println(object); // 내부적으로 object.toString() 호출
 ```
 
 - 기본 구현:
+```java
 public String toString() {
     return getClass().getName() + "@" + Integer.toHexString(hashCode());
 }
+```
 
 - 결과: 클래스명 + 해시코드(참조값)
 
