@@ -205,7 +205,7 @@ public class StringComparisonMain {
 }
 ```
 
-# ## 📌 예시 결과:
+### 📌 예시 결과:
 ```
 str1 equals str2: false
 str1 equalsIgnoreCase str2: true
@@ -680,6 +680,7 @@ String reversed = new StringBuilder(str).reverse().toString();
 ```
 
 ---
+
 
 
 
