@@ -672,7 +672,7 @@ String joinedString = String.join("->", splitFruits);
 ```
 
 
-##3 🔹 문제 11: StringBuilder.reverse()
+### 🔹 문제 11: StringBuilder.reverse()
 - 목적: 문자열 뒤집기
 - 정답 요약:
 ```java
@@ -680,6 +680,7 @@ String reversed = new StringBuilder(str).reverse().toString();
 ```
 
 ---
+
 
 
 
