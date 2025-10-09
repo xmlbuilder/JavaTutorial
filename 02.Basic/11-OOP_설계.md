@@ -230,6 +230,7 @@ public class CarMain1 {
 
 
 ## 📊 클래스 구조도
+```mermaid
 classDiagram
     class Car {
         <<interface>>
@@ -259,7 +260,7 @@ classDiagram
     Car <|.. K3Car
     Car <|.. Model3Car
     Driver --> Car
-
+```
 
 
 ## 💡 구조 해설
