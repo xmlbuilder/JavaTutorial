@@ -104,7 +104,7 @@ Object car = new Car();
 
 ## ✅ 장점
 - 다양한 타입을 하나의 메서드나 배열로 처리 가능
-- 예: void action(Object obj), Object[] objects
+- 예: `void action(Object obj)`, `Object[] objects`
 ### ❌ 한계
 - Object는 모든 객체의 부모지만, 자식 클래스의 고유 메서드는 알지 못함
 - 예: obj.sound() → 컴파일 오류
@@ -178,7 +178,7 @@ String refValue = Integer.toHexString(System.identityHashCode(dog1));
 System.out.println("refValue = " + refValue);
 ```
 
-- toString()이나 hashCode()를 오버라이딩한 경우 참조값을 확인하려면 System.identityHashCode() 사용
+- toString()이나 hashCode()를 오버라이딩한 경우 참조값을 확인하려면 `System.identityHashCode()` 사용
 
 ## 📚 요약 — Object 클래스 기능과 활용
 | 항목                     | 설명                                                                 |
@@ -193,7 +193,7 @@ System.out.println("refValue = " + refValue);
 
 
 # Object / OCP
-Object 클래스와 OCP 원칙, 그리고 equals()의 동일성과 동등성 개념까지 깔끔하게 정리한 문서.  
+Object 클래스와 OCP 원칙, 그리고 equals()의 동일성과 동등성 개념까지 깔끔하게 정리한 문서.    
 핵심 개념, 예제 흐름, 객체지향 원칙까지 포함.
 
 ## 🧠 자바 Object 클래스와 OCP 원칙 정리
@@ -306,7 +306,7 @@ user1.equals(user2)
 
 
 ## 2️⃣ 동등성 비교의 필요성
-- **동등성(Equality)**은 객체의 논리적 동일함을 의미
+- **동등성(Equality)** 은 객체의 논리적 동일함을 의미
 - 예: 회원 번호, 주민등록번호, 이메일 등으로 비교
 - 클래스마다 동등성 기준이 다르므로 equals()를 재정의(오버라이딩) 해야 함
 
@@ -391,6 +391,7 @@ Rectangle{width=100, height=20}
 false
 true
 ```
+
 ## 7️⃣ Object의 기타 메서드 요약
 | 메서드             | 설명                                                                 |
 |--------------------|----------------------------------------------------------------------|
