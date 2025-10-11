@@ -539,7 +539,7 @@ dt.get(ChronoField.SECOND_OF_DAY); // → 48659
     - plus(TemporalAmount)
     - Period 또는 Duration 객체를 사용해 시간 간격을 더함
     - 날짜 간격은 Period, 시간 간격은 Duration
-모든 시간 객체는 **불변(immutable)**이므로, 조작 후에는 반드시 반환값을 받아야 합니다.
+모든 시간 객체는 **불변(immutable)** 이므로, 조작 후에는 반드시 반환값을 받아야 합니다.
 
 ### ✅ 조작 예시
 ```java
