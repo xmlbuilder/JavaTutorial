@@ -84,48 +84,7 @@ GenericBox<Integer> box2 = new GenericBox<>(); // 타입 추론
 - Object 활용은 유연하지만 타입 오류 위험이 큼
 - 제네릭 사용은 재사용성과 안전성을 모두 만족시킴
 
-
 ---
-
-# 📦 Java 제네릭(Generic) 개념 정리
-## ✅ 제네릭이란?
-제네릭(Generic)은 클래스나 메서드 내부에서 사용할 타입을 외부에서 지정할 수 있도록 하는 문법입니다.  
-타입을 미리 결정하지 않고, 사용 시점에 타입을 지정함으로써 코드 재사용성과 타입 안전성을 동시에 만족시킵니다.
-
-## 🔍 왜 제네릭이 필요한가?
-### 1. 타입별 클래스의 한계
-```java
-class IntegerBox { Integer value; }
-class StringBox { String value; }
-```
-
-- 타입마다 클래스를 따로 만들어야 함
-- 확장성과 유지보수에 불리함
-
-### 2. Object를 활용한 다형성
-```java
-class ObjectBox {
-    Object value;
-    void set(Object value) { this.value = value; }
-    Object get() { return value; }
-}
-```
-
-- 모든 타입을 담을 수 있지만
-- 캐스팅 필요 → 런타임 오류 발생 가능
-- 타입 안전성 부족
-### 3. 제네릭 도입
-```java
-class GenericBox<T> {
-    private T value;
-    public void set(T value) { this.value = value; }
-    public T get() { return value; }
-}
-```
-
-- 하나의 클래스로 모든 타입 처리 가능
-- 컴파일 시점에 타입 체크
-- 캐스팅 불필요
 
 ## 🧠 제네릭 용어와 관례
 
