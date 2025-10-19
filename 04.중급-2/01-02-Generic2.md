@@ -52,7 +52,7 @@ public class AnimalHospitalV3<T extends Animal> { ... }
 
 
 
-## 🧠 타입 매개변수 제한 요약: AnimalHospitalV3
+## 🧠 타입 매개변수 제한 요약:
 ### 📌 핵심 문법
 ```java
 public class AnimalHospitalV3<T extends Animal> { ... }
@@ -148,7 +148,7 @@ Integer result = GenericMethod.genericMethod(i); // 타입 추론됨
 - 컴파일러가 전달된 인자와 반환 타입을 보고 자동으로 타입 결정
 - <Integer> 생략 가능
 
-## 🐾 제네릭 메서드 활용 예: AnimalHospital 기능 분리
+## 🐾 제네릭 메서드 활용 예: 기능 분리
 ```java
 public static <T extends Animal> void checkup(T t)
 public static <T extends Animal> T getBigger(T t1, T t2)
