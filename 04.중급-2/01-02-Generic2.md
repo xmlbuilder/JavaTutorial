@@ -10,7 +10,7 @@ dogHospital.set(new Cat(...)); // ❌ 컴파일 오류
 ```
 
 
-## 2️⃣ AnimalHospitalV1 (다형성 기반)
+## 2️⃣ 다형성 기반
 - 구조: Animal 타입으로 통합
 - 장점: 코드 재사용 O
 - 단점: 타입 안전성 X (개 병원에 고양이 넣어도 컴파일 오류 없음)
@@ -21,7 +21,7 @@ Dog dog = (Dog) dogHospital.getBigger(...); // ⚠️ 다운캐스팅 필요
 ```
 
 
-## 3️⃣ AnimalHospitalV2<T> (제네릭 도입)
+## 3️⃣ 제네릭 도입
 - 구조: 제네릭 <T> 사용
 - 장점: 코드 재사용 O
 - 단점: 타입 안전성 X, 기능 제한 O
@@ -34,7 +34,7 @@ AnimalHospitalV2<Integer> intHospital = new AnimalHospitalV2<>(); // ❌ 논리 
 
 | 버전               | 코드 재사용성 | 타입 안전성 | 기능 사용 가능성 | 문제 요약                         |
 |--------------------|----------------|--------------|------------------|-----------------------------------|
-| DogHospital / CatHospital | ❌             | ✅           | ✅               | 클래스 중복 많음                  |
+| DogHospital / CatHospital | ❌             | ✅           | ✅        | 클래스 중복 많음                  |
 | AnimalHospitalV1   | ✅             | ❌           | ✅               | 타입 혼동 가능, 다운캐스팅 필요   |
 | AnimalHospitalV2<T> | ✅            | ❌           | ❌               | 타입 제한 없음, 기능 호출 불가    |
 
@@ -45,6 +45,7 @@ AnimalHospitalV2<Integer> intHospital = new AnimalHospitalV2<>(); // ❌ 논리 
 ```java
 public class AnimalHospitalV3<T extends Animal> { ... }
 ```
+
 - T는 반드시 Animal 또는 그 자식 타입만 가능
 - getName(), sound() 등 Animal의 기능을 안전하게 사용 가능
 - Integer, Object 같은 무관한 타입은 컴파일 오류 발생
@@ -252,8 +253,8 @@ public class AnimalHospitalV3<T extends Animal> { ... }
 | `DogHospital.set(cat)`       | ❌ 컴파일 오류 발생 → 잘못된 타입 입력 방지                          |
 | `T`                         | `T extends Animal` → 타입 매개변수 제한으로 타입 안전성 확보          |
 | `Animal`                     | `Animal`의 기능 (`getName()`, `sound()`, `getSize()`) 사용 가능       |
-| `Dog` / `Cat` / `Animal`         | ✅ 타입 인자로 사용 가능                                              |
-| `Integer` / `Object`           | ❌ 타입 제한으로 컴파일 오류 발생 → 논리 오류 사전 차단               |
+| `Dog` / `Cat` / `Animal`     | ✅ 타입 인자로 사용 가능                                              |
+| `Integer` / `Object`         | ❌ 타입 제한으로 컴파일 오류 발생 → 논리 오류 사전 차단               |
 
 
 ## 🧪 실행 예시
