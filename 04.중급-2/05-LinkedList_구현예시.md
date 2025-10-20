@@ -60,9 +60,9 @@ C
 ## 🧠 연결 구조 시각화
 ```mermaid
 graph TD
-    A[Node A (item A)] --> B[Node B (item B)]
-    B --> C[Node C (item C)]
-    C --> D[null]
+    A["Node A - item A"] --> B["Node B - item B"]
+    B --> C["Node C - item C"]
+    C --> D["null"]
 ```
 
 
