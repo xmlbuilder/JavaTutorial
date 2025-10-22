@@ -342,7 +342,7 @@ flowchart TD
         H99["99 % 10 = 9"]
     end
 
-    subgraph 배열 CAPACITY 10
+    subgraph 배열_CAPACITY_10
         A0["[0] = null"]
         A1["[1] = null"]
         A2["[2] = null"]
@@ -360,14 +360,14 @@ flowchart TD
     V29 --> H29 --> A9
     V99 --> H99 --> A9
 
-    subgraph 조회 흐름
+    subgraph 조회_흐름
         Q["조회: 해시 인덱스 9 → 리스트에서 값 하나씩 비교 (O(n))"]
     end
 
     Q --> A9
 
-    note over A9: 해시 충돌이 심하게 발생하면 하나의 인덱스에 모든 값이 몰려 O(n) 성능으로 저하됨
-
+    COMMENT["💬 해시 충돌이 심하게 발생하면 하나의 인덱스에 모든 값이 몰려 O(n) 성능으로 저하됨"]
+    A9 --> COMMENT
 ```
 
 ## 🔍 요약
