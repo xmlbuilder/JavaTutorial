@@ -276,7 +276,7 @@ flowchart TD
         H99["99 % 10 = 9"]
     end
 
-    subgraph 배열(CAPACITY = 10)
+    subgraph 배열 CAPACITY 10
         A0["[0] = null"]
         A1["[1] = 1"]
         A2["[2] = 2"]
