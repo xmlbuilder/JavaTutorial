@@ -342,7 +342,7 @@ flowchart TD
         H99["99 % 10 = 9"]
     end
 
-    subgraph 배열(CAPACITY = 10)
+    subgraph 배열 CAPACITY 10
         A0["[0] = null"]
         A1["[1] = null"]
         A2["[2] = null"]
@@ -366,7 +366,7 @@ flowchart TD
 
     Q --> A9
 
-    note over A9: 해시 충돌이 심하게 발생하면\n하나의 인덱스에 모든 값이 몰려 O(n) 성능으로 저하됨
+    note over A9: 해시 충돌이 심하게 발생하면 하나의 인덱스에 모든 값이 몰려 O(n) 성능으로 저하됨
 
 ```
 
