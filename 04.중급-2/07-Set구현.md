@@ -454,7 +454,7 @@ flowchart TD
         H9["9 % 10 = 9"]
     end
 
-    subgraph buckets[배열(CAPACITY = 10)]
+    subgraph buckets 배열 CAPACITY 10
         B0["[0] = []"]
         B1["[1] = [1]"]
         B2["[2] = [2]"]
@@ -481,7 +481,7 @@ flowchart TD
 
     Q9 --> B9
 
-    note over B9: 해시 충돌 발생 시\n같은 인덱스에 여러 값을 리스트로 저장
+    note over B9: 해시 충돌 발생 시 같은 인덱스에 여러 값을 리스트로 저장
 ```
 
 
