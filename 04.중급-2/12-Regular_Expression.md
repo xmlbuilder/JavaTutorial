@@ -68,9 +68,9 @@ if (m.find()) {
 
 ### ✅ 설명:
 - pattern = "(.*?)(\\d+)(.*)"
-    - (.*?): 숫자 앞의 모든 문자 (최소 매칭)
-    - (\\d+): 하나 이상의 숫자
-    - (.*): 숫자 뒤의 모든 문자
+    - `(.*?)`: 숫자 앞의 모든 문자 (최소 매칭)
+    - `(\\d+)`: 하나 이상의 숫자
+    - `(.*)`: 숫자 뒤의 모든 문자
 - Pattern.compile(pattern)
     - 정규식을 컴파일하여 Pattern 객체 생성
     - Matcher m = r.matcher(line)
@@ -111,9 +111,9 @@ String pattern = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$";
 String email = "test.email@domain.co.kr";
 System.out.println(Pattern.matches(pattern, email)); // true
 ```
-- \\w: 알파벳, 숫자, 밑줄
-- .: 도메인 구분
-- {2,}: 최종 도메인 길이 제한
+- `\\w`: 알파벳, 숫자, 밑줄
+- `.`: 도메인 구분
+- `{2,}`: 최종 도메인 길이 제한
 
 ##✅ 3. 전화번호 형식 검사 (010-xxxx-xxxx)
 ```java
@@ -150,7 +150,7 @@ while (m.find()) {
 }
 ```
 
-- \\d+: 하나 이상의 숫자
+- `\\d+`: 하나 이상의 숫자
 - 결과: 3000
 
 ## ✅ 7. HTML 태그 제거
@@ -160,7 +160,7 @@ String cleaned = html.replaceAll("<[^>]*>", "");
 System.out.println(cleaned); // Hello World
 ```
 
-- <[^>]*>: <로 시작해서 >로 끝나는 태그
+- `<[^>]*>`: <로 시작해서 >로 끝나는 태그
 
 ## ✅ 8. 공백 기준으로 단어 분리
 ```java
@@ -169,7 +169,7 @@ String[] words = sentence.split("\\s+");
 System.out.println(Arrays.toString(words)); // [Java, is, powerful]
 ```
 
-- \\s+: 하나 이상의 공백
+- `\\s+`: 하나 이상의 공백
 
 ---
 
