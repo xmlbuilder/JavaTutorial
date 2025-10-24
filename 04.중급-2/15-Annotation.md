@@ -62,7 +62,7 @@ class B extends A {}
 class C extends B {}
 ```
 
-###🔹 단계별 설명
+### 🔹 단계별 설명
 - @Inherited
     - 해당 애너테이션이 자식 클래스에 상속될 수 있도록 허용.
 - UnInheritedAnnotationType은 @Inherited가 없기 때문에 상속되지 않음.
