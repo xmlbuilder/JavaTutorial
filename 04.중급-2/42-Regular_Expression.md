@@ -32,7 +32,7 @@ List<string>
 - find()는 매칭되는 부분 문자열을 반복적으로 찾음
 
 
-###❗ 주의: matcher.matches()는 전체 일치 검사
+### ❗ 주의: matcher.matches()는 전체 일치 검사
 ```java
 boolean find = matcher.matches();
 System.out.println(find); // false
