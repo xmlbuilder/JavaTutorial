@@ -71,7 +71,7 @@ List<String> fruits = Stream.of("apple", "banana", "kiwi")
     .collect(Collectors.toList());
 ```
 
-- 결과: ["apple", "banana"]
+- 결과: `["apple", "banana"]`
 
 ## 🧮 reduce() — 누적 계산
 - 역할: 스트림의 모든 요소를 하나의 결과로 축소
@@ -83,7 +83,7 @@ int sum = Stream.of(1, 2, 3, 4, 5)
     .reduce(0, (a, b) -> a + b);
 ```
 
-- 결과: 15
+- 결과: `15`
 
 ## 🧹 flatMap() — 중첩 구조 평탄화
 - 역할: 스트림의 각 요소를 또 다른 스트림으로 변환하고, 이를 하나의 스트림으로 병합
@@ -100,7 +100,7 @@ List<String> flatList = listOfLists.stream()
     .collect(Collectors.toList());
 ```
 
-- 결과: ["apple", "banana", "kiwi", "orange"]
+- 결과: `["apple", "banana", "kiwi", "orange"]`
 
 ## ✅ 예제 2: 문자열 → 문자 스트림
 ```java
@@ -111,7 +111,7 @@ List<Character> chars = words.stream()
     .collect(Collectors.toList());
 ```
 
-- 결과: ['j','a','v','a','s','t','r','e','a','m']
+- 결과: `['j','a','v','a','s','t','r','e','a','m']`
 
 ## 📌 요약 표
 ### 📌 Stream 고급 연산 요약
