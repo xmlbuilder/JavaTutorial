@@ -12,10 +12,10 @@ Matcher matcher = pattern.matcher(text);
 ### ✅ 목적
 - "List<string>" 같은 제네릭 타입을 찾기 위한 정규식
 ### ✅ 정규식 설명
-- "List<\\w+>"
-- List< : 문자열 "List<" 그대로
-- \\w+ : 하나 이상의 알파벳/숫자/언더스코어
-- > : 닫는 꺾쇠
+- `List<\\w+>`
+- `List<` : 문자열 "List<" 그대로
+- `\\w+` : 하나 이상의 알파벳/숫자/언더스코어
+- `>` : 닫는 꺾쇠
 ### ✅ 결과
 ```java
 while(matcher.find()){
@@ -49,9 +49,9 @@ var matcher = pattern.matcher(text);
 ```
 
 ### ✅ 정규식 설명
-- "\\b[a-z]+\\b"
-- \\b : 단어 경계
-- [a-z]+ : 소문자 알파벳 하나 이상
+- `\\b[a-z]+\\b`
+- `\\b` : 단어 경계
+- `[a-z]+` : 소문자 알파벳 하나 이상
 ### ✅ 결과
 ```java
 while(matcher.find()){
