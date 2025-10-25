@@ -1,6 +1,6 @@
 # NDArray
 이 코드는 Java에서 DJL (Deep Java Library)를 활용해 NumPy처럼 NDArray 연산을 수행하는 예제입니다.  
-아래에 단계별로 기능을 설명하고, 전체 흐름을 정리해드릴게요.
+아래에 단계별로 기능을 설명하고, 전체 흐름을 정리.
 
 ## 🧠 핵심 개념: DJL의 NDArray는 Java의 NumPy
 - `NDArray`: 다차원 배열 객체 (NumPy의 ndarray와 유사)
