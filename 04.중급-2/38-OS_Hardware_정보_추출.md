@@ -70,7 +70,6 @@ public class SystemCheck {
         System.out.println("Available Memory: " + memory.getAvailable() / (1024 * 1024) + " MB");
     }
 }
-
 ```
 
 ## 📊 주요 정보 요약
@@ -89,3 +88,44 @@ public class SystemCheck {
 - 성능 최적화: CPU 코어 수에 따라 병렬 처리 조정
 
 ---
+
+# Android
+## Android에서 시스템 정보 확인하는 방법
+Android에서는 OSHI 대신 Android SDK의 API를 사용해야 해요:
+### 📱 OS 및 디바이스 정보
+```java
+String manufacturer = Build.MANUFACTURER;
+String model = Build.MODEL;
+String version = Build.VERSION.RELEASE;
+String osName = "Android " + version;
+```
+
+### 🧠 CPU 정보
+```java
+int cores = Runtime.getRuntime().availableProcessors();
+String arch = System.getProperty("os.arch");
+```
+
+## 🧮 메모리 정보
+```java
+ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
+ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+activityManager.getMemoryInfo(memoryInfo);
+
+long totalMem = memoryInfo.totalMem;
+long availMem = memoryInfo.availMem;
+```
+
+
+## 📦 Android용 시스템 정보 라이브러리
+
+| 라이브러리 이름                  | 주요 기능                                   | GitHub 또는 설명 링크 |
+|----------------------------------|---------------------------------------------|------------------------|
+| `AndroidDeviceNames`             | 제조사/모델 이름을 사용자 친화적으로 표시    | [GitHub 링크](https://github.com/jaredrummler/AndroidDeviceNames) |
+| `DeviceInfo`                     | OS, CPU, 메모리, 디바이스 정보 수집          | [GitHub 링크](https://github.com/numetriclabz/android-system-info) |
+| `Battery Historian` (Google)     | 배터리 사용량 분석 및 성능 모니터링          | [GitHub 링크](https://github.com/google/battery-historian) |
+| `Simple System Info`             | CPU, RAM, 디스크, 센서 정보 간단 조회         | [GitHub 링크](https://github.com/romannurik/muzei) (내부 포함) |
+
+
+
+
