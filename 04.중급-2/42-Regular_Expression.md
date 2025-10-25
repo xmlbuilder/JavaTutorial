@@ -222,7 +222,7 @@ Pattern.compile("\\b(\\w)\\w\\1\\b")
 
 ## 전체 소스
 
-### 1.
+### 1. 문자열 판정
 ```java
 String text = "private List<string> results = new List<string>();";
 Pattern pattern = Pattern.compile("List<\\w+>");
@@ -250,7 +250,7 @@ while(matcher.find()){
 
 ```
 
-### 2.
+### 2. 문자열 스트림 처리
 ```java
 var matcher1 = pattern.matcher(text);
 List<String> results = matcher1.results().filter(s -> s.group().contains("private"))
@@ -286,7 +286,7 @@ while(matches.find()){
 }
 ```
 
-### 3.
+### 3. 문자열 치환
 
 ```java
 var text = "C# 공부를 쪼끔씩 진행해 보자";
@@ -300,7 +300,7 @@ System.out.println(replaced);
 
 ```
 
-### 4.
+### 4. 그룹화 기능을 이용한 문자열 치환
 ```java
 var text = "1024바이트, 8바이트 문자, 바이트, 킬로바이트";
 var pattern = @"(\d+)바이트";
@@ -314,7 +314,7 @@ System.out.println(replaced);
 
 ```
 
-### 5.
+### 5. 문자열을 이용한 분활 
 ```java
 var text = "Word, Excel  ,PowerPoint   , Outlook,OneNote";
 var pattern = "\\s*,\\s*";
@@ -325,7 +325,7 @@ for (var str : subStrings)
 }
 ```
 
-### 6.
+### 6. 정규식 수량자
 ```java
 var text = "a123456 b123 z12345 AX98765";
 var pattern = Pattern.compile("\\b[a-zA-Z][0-9]{5,}\\b");
@@ -345,7 +345,7 @@ while (matcher.find())
 
 ```
 
-### 7.
+### 7. 정규식 최단 일지
 ```java
 /*
 var text = "<person><name>JungHwan Jeong</name><age>22</age></person>";
@@ -364,7 +364,7 @@ while(matcher.find()){
 }   
 ```
 
-### 8.
+### 8. 정규식 역참조
 ```java
 //한글은 동작하지 않은 -> 원인 분석 필요함.        
 
