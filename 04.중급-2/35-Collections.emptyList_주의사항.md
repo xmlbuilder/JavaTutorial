@@ -13,7 +13,8 @@ list.add(Collections.<String>emptyList());
 ### 타입 추론
 - Collections.emptyList()는 타입이 List<Object>로 추론됨
  - 즉, list.add(Collections.emptyList())는 경고 없이 컴파일되지만 타입 안전하지 않음
- - List<List<String>>에 List<Object>를 넣는 셈
+ - List<List<String>>에 List<Object>를 넣는 셈  
+
 ### 타입 명시  
 - Collections.<String>emptyList()는 명시적으로 List<String> 타입 지정
  - 타입 안정성 확보
