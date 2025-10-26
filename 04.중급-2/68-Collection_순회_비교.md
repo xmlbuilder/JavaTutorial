@@ -198,26 +198,6 @@ for (Integer value : map.values()) { ... }
 for (Map.Entry<String, Integer> entry : map.entrySet()) { ... }
 ```
 
-## 🧬 클래스 구조도 (요약)
-```mermaid
-classDiagram
-    Iterable <|.. MyArray
-    Iterator <|.. MyArrayIterator
-
-    class MyArray {
-        -int[] numbers
-        +iterator(): Iterator<Integer>
-    }
-
-    class MyArrayIterator {
-        -int currentIndex
-        -int[] targetArr
-        +hasNext(): boolean
-        +next(): Integer
-    }
-```
-
-
 ## ✅ 실무 팁
 - Iterable을 구현하면 for-each 문 사용 가능 → 코드 간결성 향상
 - Iterator는 상태를 가지므로 반복 중간에 제어 가능
