@@ -60,8 +60,8 @@ int count = Integer.bitCount(value); // 1의 개수 세기
 ```
 
 ## 📦 활용 팁
-- >>>는 부호 없는 시프트로, 음수 처리 시 유용
-- Integer.toBinaryString()은 디버깅에 매우 유용
+- `>>>` 는 부호 없는 시프트로, 음수 처리 시 유용
+- `Integer.toBinaryString()` 은 디버깅에 매우 유용
 - 비트 연산은 조건문 없이 빠른 처리가 가능해 성능 최적화에 좋음
 
 ---
