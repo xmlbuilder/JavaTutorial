@@ -216,3 +216,39 @@ while (true) {
 - 반복문과 조건문을 활용하면 실전형 프로그램을 만들 수 있음
 - 문제를 직접 풀고, 코드를 따라치며 몸으로 익히는 것이 중요
 
+---
+
+# 🧠 nextInt() 다음에 nextLine()을 호출할 때 주의할 점
+
+## 🔍 문제 상황
+```java
+Scanner scanner = new Scanner(System.in);
+int number = scanner.nextInt();   // 숫자 입력 (예: 10)
+String text = scanner.nextLine(); // 바로 다음 줄에서 문자열 입력
+```
+- 위 코드에서 text는 **빈 문자열("")** 이 될 수 있음
+
+## 📌 이유
+- nextInt()는 숫자만 읽고 **줄바꿈 문자(\n)** 는 읽지 않음
+- 그래서 nextLine()은 남아 있던 줄바꿈을 그대로 읽어버림
+
+## ✅ 해결 방법
+### 방법 1: nextLine()을 한 번 더 호출해서 줄바꿈 제거
+```java
+int number = scanner.nextInt();
+scanner.nextLine(); // 줄바꿈 제거용
+String text = scanner.nextLine(); // 실제 문자열 입력
+```
+
+### 방법 2: 처음부터 nextLine()으로 숫자도 문자열로 받고 Integer.parseInt()로 변환
+```java
+int number = Integer.parseInt(scanner.nextLine());
+String text = scanner.nextLine();
+```
+
+
+## 💡 팁
+- nextInt(), nextDouble() 등 숫자 입력 후에는 항상 nextLine()으로 줄바꿈을 제거하는 습관을 들이면 좋음
+- Scanner는 줄 단위 입력과 토큰 단위 입력이 섞일 때 주의가 필요
+
+---
