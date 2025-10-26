@@ -49,17 +49,23 @@ for(Class cls : sets){
         SampleCode1 sampleCode1 = (SampleCode1) constructor.newInstance();
         Method[] methods = cls.getMethods();
         for (Method method : methods ){
+
+            //execute 호출
             if(method.getName().contains("execute")){
                 method.invoke(sampleCode1, null);
             }
             else{
+
                 ArgData annotation = method.getAnnotation(ArgData.class);
                 if(annotation == null) continue;
+
+                //TestData1 이 호출
                 String[] arguments = annotation.value();
                 if(arguments != null){
                     ArrayList<String> lists  = new ArrayList<>( Arrays.asList(arguments) );
                     method.invoke(sampleCode1, lists);
                 }
+
             }
         }
     }
