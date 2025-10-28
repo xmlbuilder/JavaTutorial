@@ -14,7 +14,7 @@
 | TIMED_WAITING  | `sleep()`, `wait(timeout)`, `join(timeout)` 등 시간 제한 대기 |
 | TERMINATED     | `run()` 종료 또는 예외 발생               |
 
-### 🔸 BLOCKED, WAITING, TIMED_WAITING은 자바에서 공식적으로 구분되지만, 설명 편의상 "일시 중지 상태"로 묶어 설명하기도 합니다.
+- 🔸 BLOCKED, WAITING, TIMED_WAITING은 자바에서 공식적으로 구분되지만, 설명 편의상 "일시 중지 상태"로 묶어 설명하기도 합니다.
 
 
 ## 🔁 자바 스레드 상태 전이 흐름
