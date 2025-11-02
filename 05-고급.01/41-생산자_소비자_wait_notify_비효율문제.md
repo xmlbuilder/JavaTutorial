@@ -83,13 +83,13 @@ flowchart TD
 ## 🧩 소비자 우선 실행 흐름
 ```mermaid
 flowchart TD
-    subgraph 소비자 스레드
+    subgraph 소비자_스레드
         C1[consumer1: 큐 empty → wait]
         C2[consumer2: 큐 empty → wait]
         C3[consumer3: 큐 empty → wait]
     end
 
-    subgraph 생산자 스레드
+    subgraph 생산자_스레드
         P1[producer1: data1 저장 → notify]
         P2[producer2: data2 저장 → notify]
         P3[producer3: data3 저장 → notify]
