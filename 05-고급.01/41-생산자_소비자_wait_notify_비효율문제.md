@@ -15,13 +15,13 @@ flowchart TD
         C3[consumer3: data3 소비 → notify]
     end
 
-    P1 --> Q1[큐 상태: [data1]]
-    P2 --> Q2[큐 상태: [data1, data2]]
+    P1 --> Q1[큐 상태: - data1]
+    P2 --> Q2[큐 상태: - data1, data2]
     P3 --> W1[대기 집합: WAITING 상태]
     C1 --> N1[notify → p3 깨움]
-    P3 --> Q3[큐 상태: [data2, data3]]
-    C2 --> Q4[큐 상태: [data3]]
-    C3 --> Q5[큐 상태: []]
+    P3 --> Q3[큐 상태: - data2, data3 ]
+    C2 --> Q4[큐 상태: - data3]
+    C3 --> Q5[큐 상태: - ]
 
     style P1 fill:#f9f,stroke:#333,stroke-width:1px
     style P2 fill:#f9f,stroke:#333,stroke-width:1px
@@ -99,13 +99,13 @@ flowchart TD
     C2 --> W1
     C3 --> W1
     P1 --> N1[notify → c1 깨움]
-    C1 --> Q1[큐 상태: [data1] → 소비 → notify()]
-    N1 --> C2[notify → c2 깨움 → 큐 empty → 다시 wait()]
+    C1 --> Q1[큐 상태: - data1 → 소비 → notify]
+    N1 --> C2[notify → c2 깨움 → 큐 empty → 다시 wait]
     P2 --> N2[notify → c3 깨움]
-    C3 --> Q2[큐 상태: [data2] → 소비 → notify()]
-    N2 --> C2_2[notify → c2 깨움 → 큐 empty → 다시 wait()]
+    C3 --> Q2[큐 상태: - data2 → 소비 → notify]
+    N2 --> C2_2[notify → c2 깨움 → 큐 empty → 다시 wait]
     P3 --> N3[notify → c2 깨움]
-    C2 --> Q3[큐 상태: [data3] → 소비 → 종료]
+    C2 --> Q3[큐 상태: - data3 → 소비 → 종료]
 
     style P1 fill:#f9f,stroke:#333,stroke-width:1px
     style P2 fill:#f9f,stroke:#333,stroke-width:1px
