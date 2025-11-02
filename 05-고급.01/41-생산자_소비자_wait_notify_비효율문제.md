@@ -4,21 +4,21 @@
 ```mermaid
 flowchart TD
     subgraph 생산자 스레드
-        P1[producer1: data1 저장 → notify()]
-        P2[producer2: data2 저장 → notify()]
-        P3[producer3: 큐 full → wait()]
+        P1[producer1: data1 저장 → notify]
+        P2[producer2: data2 저장 → notify]
+        P3[producer3: 큐 full → wait]
     end
 
     subgraph 소비자 스레드
-        C1[consumer1: data1 소비 → notify()]
-        C2[consumer2: data2 소비 → notify()]
-        C3[consumer3: data3 소비 → notify()]
+        C1[consumer1: data1 소비 → notify]
+        C2[consumer2: data2 소비 → notify]
+        C3[consumer3: data3 소비 → notify]
     end
 
     P1 --> Q1[큐 상태: [data1]]
     P2 --> Q2[큐 상태: [data1, data2]]
     P3 --> W1[대기 집합: WAITING 상태]
-    C1 --> N1[notify() → p3 깨움]
+    C1 --> N1[notify → p3 깨움]
     P3 --> Q3[큐 상태: [data2, data3]]
     C2 --> Q4[큐 상태: [data3]]
     C3 --> Q5[큐 상태: []]
@@ -84,27 +84,27 @@ flowchart TD
 ```mermaid
 flowchart TD
     subgraph 소비자 스레드
-        C1[consumer1: 큐 empty → wait()]
-        C2[consumer2: 큐 empty → wait()]
-        C3[consumer3: 큐 empty → wait()]
+        C1[consumer1: 큐 empty → wait]
+        C2[consumer2: 큐 empty → wait]
+        C3[consumer3: 큐 empty → wait]
     end
 
     subgraph 생산자 스레드
-        P1[producer1: data1 저장 → notify()]
-        P2[producer2: data2 저장 → notify()]
-        P3[producer3: data3 저장 → notify()]
+        P1[producer1: data1 저장 → notify]
+        P2[producer2: data2 저장 → notify]
+        P3[producer3: data3 저장 → notify]
     end
 
     C1 --> W1[대기 집합: WAITING 상태]
     C2 --> W1
     C3 --> W1
-    P1 --> N1[notify() → c1 깨움]
+    P1 --> N1[notify → c1 깨움]
     C1 --> Q1[큐 상태: [data1] → 소비 → notify()]
-    N1 --> C2[notify() → c2 깨움 → 큐 empty → 다시 wait()]
-    P2 --> N2[notify() → c3 깨움]
+    N1 --> C2[notify → c2 깨움 → 큐 empty → 다시 wait()]
+    P2 --> N2[notify → c3 깨움]
     C3 --> Q2[큐 상태: [data2] → 소비 → notify()]
-    N2 --> C2_2[notify() → c2 깨움 → 큐 empty → 다시 wait()]
-    P3 --> N3[notify() → c2 깨움]
+    N2 --> C2_2[notify → c2 깨움 → 큐 empty → 다시 wait()]
+    P3 --> N3[notify → c2 깨움]
     C2 --> Q3[큐 상태: [data3] → 소비 → 종료]
 
     style P1 fill:#f9f,stroke:#333,stroke-width:1px
@@ -179,8 +179,8 @@ flowchart TD
         P3[producer3: WAITING]
     end
 
-    P0[producer0: data0 저장 → notify()] --> 대기 집합
-    C0[consumer0: data0 소비 → notify()] --> 대기 집합
+    P0[producer0: data0 저장 → notify] --> 대기 집합
+    C0[consumer0: data0 소비 → notify] --> 대기 집합
 
     subgraph notify() 호출 결과
         N1[임의 스레드 깨움 → 예측 불가]
