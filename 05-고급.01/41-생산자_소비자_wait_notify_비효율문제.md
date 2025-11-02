@@ -182,12 +182,12 @@ flowchart TD
     P0[producer0: data0 저장 → notify] --> 대기 집합
     C0[consumer0: data0 소비 → notify] --> 대기 집합
 
-    subgraph notify() 호출 결과
+    subgraph notify 호출 결과
         N1[임의 스레드 깨움 → 예측 불가]
         N2[같은 종류 스레드 깨어남 → 비효율 발생]
     end
 
-    subgraph notifyAll() 호출 결과
+    subgraph notifyAll 호출 결과
         NA1[모든 스레드 깨어남]
         NA2[락 획득 경쟁 → BLOCKED]
         NA3[필요 없는 스레드도 깨어남 → 비효율]
