@@ -170,7 +170,7 @@ Object.wait() / notify() / notifyAll() 방식의 한계와 구조적 문제를 �
 ## 🧩 Flowchart: notify() / notifyAll()의 한계
 ```mermaid
 flowchart TD
-    subgraph 대기 집합
+    subgraph 대기_집합
         C1[consumer1: WAITING]
         C2[consumer2: WAITING]
         C3[consumer3: WAITING]
@@ -179,15 +179,15 @@ flowchart TD
         P3[producer3: WAITING]
     end
 
-    P0[producer0: data0 저장 → notify] --> 대기 집합
-    C0[consumer0: data0 소비 → notify] --> 대기 집합
+    P0[producer0: data0 저장 → notify] --> 대기_집합
+    C0[consumer0: data0 소비 → notify] --> 대기_집합
 
-    subgraph notify 호출 결과
+    subgraph notify 호출_결과
         N1[임의 스레드 깨움 → 예측 불가]
         N2[같은 종류 스레드 깨어남 → 비효율 발생]
     end
 
-    subgraph notifyAll 호출 결과
+    subgraph notifyAll 호출_결과
         NA1[모든 스레드 깨어남]
         NA2[락 획득 경쟁 → BLOCKED]
         NA3[필요 없는 스레드도 깨어남 → 비효율]
