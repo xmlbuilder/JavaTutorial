@@ -154,3 +154,49 @@ sequenceDiagram
 
 ---
 
+# 🔐 자바의 두 가지 대기 장소
+## 🔁 상태 진입 경로 요약
+
+| 상태     | 진입 조건        | 대기 장소         | 설명                                 |
+|----------|------------------|-------------------|--------------------------------------|
+| BLOCKED  | synchronized 진입 | 락 대기 집합       | 락을 얻지 못한 경우, 모니터 락을 기다림 |
+| WAITING  | wait() 호출       | 스레드 대기 집합   | 락을 가진 상태에서 wait() 호출 → 락 반납 후 조건 대기 |
+
+## 🧠 핵심 요약
+- BLOCKED는 락을 얻지 못한 스레드가 synchronized 진입을 시도할 때 발생
+- WAITING은 락을 가진 스레드가 wait()를 호출해 조건 대기 집합으로 이동할 때 발생
+- 두 상태는 서로 다른 대기 장소에서 관리되며, 다른 이유로 대기하는 상태입니다
+
+
+## 🧠 흐름 요약
+- BLOCKED 상태의 스레드는 락을 얻기 위해 기다리는 중입니다.
+- 예: c2, c3가 synchronized 블록에 진입하려다 실패 → 락 대기 집합에서 BLOCKED
+- WAITING 상태의 스레드는 조건이 충족되기를 기다리는 중입니다.
+- 예: c1이 락을 가진 상태에서 wait() 호출 → 락 반납 후 스레드 대기 집합에서 WAITING
+
+
+```mermaid
+flowchart TD
+    subgraph 락 대기 집합
+        BLOCKED_c2[c2: BLOCKED]
+        BLOCKED_c3[c3: BLOCKED]
+    end
+
+    subgraph 스레드 대기 집합
+        WAITING_c1[c1: WAITING]
+    end
+
+    RUNNABLE_c1[c1: RUNNABLE]
+    MonitorLock[모니터 락]
+
+    WAITING_c1 --> BLOCKED_c1[c1: BLOCKED]
+    BLOCKED_c1 --> RUNNABLE_c1
+    MonitorLock --> RUNNABLE_c1
+```
+
+
+## ✍️ 비유로 이해하기
+- `WAITING`: "줄 서서 입장권을 기다리는 사람" → 입장권(락)을 받기 전까지는 대기실에 있음
+- `BLOCKED` : "입장권은 받았지만 문이 잠겨 있어서 문 앞에서 기다리는 사람"
+    - 둘 다 대기 중이지만 대기 이유와 위치가 다릅니다
+
