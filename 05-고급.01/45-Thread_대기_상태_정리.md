@@ -96,18 +96,18 @@ sequenceDiagram
 
 | 상태     | 진입 조건        | 설명                                |
 |----------|------------------|-------------------------------------|
-| BLOCKED  | synchronized 진입 | 락을 얻지 못한 경우, 락 대기 집합에서 대기 |
-| WAITING  | wait() 호출       | 락을 보유한 상태에서 wait() 호출 → 락 반납 후 스레드 대기 집합에서 대기 |
+| `BLOCKED`  | synchronized 진입 | 락을 얻지 못한 경우, 락 대기 집합에서 대기 |
+| `WAITING`  | wait() 호출       | 락을 보유한 상태에서 `wait()` 호출 → `락 반납` 후 `스레드 대기 집합` 에서 대기 |
 
 
 ## 🧠 상태 전환 흐름 요약
 ### 🔹 BLOCKED 상태로 진입하는 시점
 - 스레드가 synchronized 블록에 진입하려고 할 때
 - 이미 다른 스레드가 해당 객체의 모니터 락을 보유 중이면
-    - BLOCKED 상태로 전환되어 락 대기 집합에서 대기
+    - `BLOCKED` 상태로 전환되어 `락 대기 집합` 에서 대기
 ### 🔹 WAITING 상태로 진입하는 시점
 - 스레드가 이미 락을 보유한 상태에서 wait() 호출
-    - 락을 반납하고 스레드 대기 집합으로 이동
+    - `락을 반납` 하고 `스레드 대기 집합` 으로 이동
     - WAITING 상태로 전환
 ### 🔹 WAITING → BLOCKED로 바뀌는 시점
 - 다른 스레드가 notify() 또는 notifyAll() 호출
@@ -147,9 +147,9 @@ sequenceDiagram
 
 
 ## ✅ 핵심 정리
-- BLOCKED와 WAITING은 서로 다른 대기 이유를 나타냄
-- BLOCKED → RUNNABLE: 락을 획득하면 실행 가능
-- WAITING → BLOCKED: notify()로 깨움 → 락을 얻기 전까지 BLOCKED
+- `BLOCKED` 와 `WAITING` 은 서로 다른 대기 이유를 나타냄
+- `BLOCKED` → `RUNNABLE` : `락을 획득` 하면 실행 가능
+- `WAITING` → `BLOCKED`: `notify()` 로 깨움 → `락을 얻기 전` 까지 `BLOCKED`
 - 스레드는 `WAITING` → `BLOCKED` → `RUNNABLE` 순으로 2중 대기소를 통과해야 임계 영역을 수행할 수 있음
 
 ---
