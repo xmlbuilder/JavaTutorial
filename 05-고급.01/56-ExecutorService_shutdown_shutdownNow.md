@@ -24,7 +24,7 @@
 | `close()`            | Java 19부터 지원, shutdown() 호출 후 일정 시간 지나면 shutdownNow() 자동 호출 |
 
 
-## 📊 시퀀스 다이어그램
+## 📊 시퀀스 다이어그램 (shutdownNow)
 ```mermaid
 sequenceDiagram
     participant 요청스레드
