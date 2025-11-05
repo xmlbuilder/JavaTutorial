@@ -176,7 +176,10 @@ flowchart TD
         H[close] --> F
         H --> I[자원 정리]
     end
-
+    end
+```
+```mermaid
+flowchart TD
     subgraph 읽기 흐름
         J[read] --> K{버퍼에 데이터 있음?}
         K -- 예 --> L[1byte 반환]
