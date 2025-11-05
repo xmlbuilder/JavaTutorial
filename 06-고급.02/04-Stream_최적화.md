@@ -165,26 +165,26 @@ Time taken: 5ms
 ```mermaid
 flowchart TD
     subgraph 쓰기 흐름
-        A[write\\(byte\\)] --> B[버퍼에 저장]
+        A[write - byte] --> B[버퍼에 저장]
         B --> C{버퍼 가득 참?}
         C -- 아니오 --> A
-        C -- 예 --> D[FileOutputStream.write(byte[])]
+        C -- 예 --> D[FileOutputStream.write - byte array]
         D --> E[버퍼 비움]
         E --> A
-        F[flush()] --> G[버퍼에 남은 데이터 전달]
+        F[flush] --> G[버퍼에 남은 데이터 전달]
         G --> D
-        H[close()] --> F
+        H[close] --> F
         H --> I[자원 정리]
     end
 
     subgraph 읽기 흐름
-        J[read()] --> K{버퍼에 데이터 있음?}
+        J[read] --> K{버퍼에 데이터 있음?}
         K -- 예 --> L[1byte 반환]
-        K -- 아니오 --> M[FileInputStream.read(byte[])]
+        K -- 아니오 --> M[FileInputStream.read - byte array]
         M --> N[버퍼에 저장]
         N --> L
         L --> J
-        O[close()] --> P[자원 정리]
+        O[close] --> P[자원 정리]
     end
 ```
 
