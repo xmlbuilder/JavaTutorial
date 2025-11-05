@@ -168,7 +168,7 @@ flowchart TD
         A[write - byte] --> B[버퍼에 저장]
         B --> C{버퍼 가득 참?}
         C -- 아니오 --> A
-        C -- 예 --> D[FileOutputStream.write(byte[])]
+        C -- 예 --> D[FileOutputStream.write(byte array)]
         D --> E[버퍼 비움]
         E --> A
         F[flush()] --> D
@@ -178,7 +178,7 @@ flowchart TD
     subgraph 읽기 흐름
         I[read] --> J{버퍼에 데이터 있음?}
         J -- 예 --> K[1byte 반환]
-        J -- 아니오 --> L[FileInputStream.read(byte[])]
+        J -- 아니오 --> L[FileInputStream.read(byte array)]
         L --> M[버퍼에 저장]
         M --> K
         K --> I
