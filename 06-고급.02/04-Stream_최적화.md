@@ -176,7 +176,6 @@ flowchart TD
         H[close] --> F
         H --> I[자원 정리]
     end
-    end
 ```
 ```mermaid
 flowchart TD
@@ -188,7 +187,6 @@ flowchart TD
         N --> L
         L --> J
         O[close] --> P[자원 정리]
-    end
     end
 ```
 
