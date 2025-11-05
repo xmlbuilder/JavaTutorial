@@ -13,7 +13,7 @@
 
 ## 🔧 예제 1: 문자 인코딩만 수행
 ### 📄 코드: EncodingMain1.java
-```
+```java
 package charset;
 import java.nio.charset.Charset;
 import java.util.Arrays;
