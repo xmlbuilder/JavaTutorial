@@ -165,7 +165,7 @@ Time taken: 5ms
 ```mermaid
 flowchart TD
     subgraph 쓰기 흐름
-        A[write(byte)] --> B[버퍼에 저장]
+        A[write\\(byte\\)] --> B[버퍼에 저장]
         B --> C{버퍼 가득 참?}
         C -- 아니오 --> A
         C -- 예 --> D[FileOutputStream.write(byte[])]
