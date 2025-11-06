@@ -24,14 +24,14 @@
 - 📡 IP (Internet Protocol)
     - IP 주소를 기반으로 데이터 전달
     - 데이터는 패킷 단위로 전송됨
-    - 패킷 구조: 출발지 IP, 목적지 IP, 데이터
--⚠️ IP의 한계
+    - 패킷 구조: 출발지 IP, 목적지 IP, 데이터  
+- ⚠️ IP의 한계
     - 비연결성: 대상이 없어도 패킷 전송
     - 비신뢰성: 패킷 손실, 순서 뒤바뀜 가능
     - 프로그램 구분 어려움: 동일 IP 내 여러 애플리케이션
 
 ## 4. TCP와 UDP
--🔒 TCP (Transmission Control Protocol)  
+- 🔒 TCP (Transmission Control Protocol)  
     - 연결지향: 3-way handshake
     - 신뢰성 보장: 데이터 전달 확인, 순서 보장
     - 패킷 재전송: 순서 오류 시 재요청  
