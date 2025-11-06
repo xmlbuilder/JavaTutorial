@@ -193,8 +193,8 @@ public class FilePathSample {
 
 
 ### 🧪 2. 인스턴스 기반 메서드 샘플 (File, Scanner, BufferedReader 등)
-- 자바에서 static이 아닌 메서드는 객체를 생성한 후에 호출해야 합니다.
-- 아래는 대표적인 예시입니다:
+- 자바에서 static이 아닌 메서드는 객체를 생성한 후에 호출해야 합니다.  
+  아래는 대표적인 예시입니다:
 #### 📌 Scanner 사용 예시
 ```java
 import java.util.Scanner;
