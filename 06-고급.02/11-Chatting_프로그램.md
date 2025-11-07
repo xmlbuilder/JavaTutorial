@@ -203,105 +203,103 @@ public void run() {
 
 ## UML 흐름도
 
-@startuml
-title Chat Program UML Diagram
+```mermaid
+classDiagram
+    class ClientMain {
+        +main(args: String array): void
+    }
 
-interface CommandManager {
-    +execute(totalMessage: String, session: Session): void
-}
+    class Client {
+        -socket: Socket
+        -input: DataInputStream
+        -output: DataOutputStream
+        -readHandler: ReadHandler
+        -writeHandler: WriteHandler
+        +start(): void
+        +close(): void
+    }
 
-class CommandManagerV1 {
-    -sessionManager: SessionManager
-    +execute(totalMessage: String, session: Session): void
-}
+    class ReadHandler {
+        -input: DataInputStream
+        -client: Client
+        +run(): void
+        +close(): void
+    }
 
-class CommandManagerV2 {
-    -sessionManager: SessionManager
-    +execute(totalMessage: String, session: Session): void
-}
+    class WriteHandler {
+        -output: DataOutputStream
+        -client: Client
+        +run(): void
+        +close(): void
+    }
 
-class Session {
-    -socket: Socket
-    -input: DataInputStream
-    -output: DataOutputStream
-    -commandManager: CommandManager
-    -sessionManager: SessionManager
-    -username: String
-    +run(): void
-    +send(message: String): void
-    +getUsername(): String
-    +setUsername(name: String): void
-    +close(): void
-}
+    class ServerMain {
+        +main(args: String array): void
+    }
 
-class SessionManager {
-    -sessions: List<Session>
-    +add(session: Session): void
-    +remove(session: Session): void
-    +sendAll(message: String): void
-    +getAllUsername(): List<String>
-    +closeAll(): void
-}
+    class Server {
+        -port: int
+        -commandManager: CommandManager
+        -sessionManager: SessionManager
+        -serverSocket: ServerSocket
+        +start(): void
+    }
 
-class Server {
-    -port: int
-    -commandManager: CommandManager
-    -sessionManager: SessionManager
-    -serverSocket: ServerSocket
-    +start(): void
-}
+    class Session {
+        -socket: Socket
+        -input: DataInputStream
+        -output: DataOutputStream
+        -commandManager: CommandManager
+        -sessionManager: SessionManager
+        -username: String
+        +run(): void
+        +send(message: String): void
+        +getUsername(): String
+        +setUsername(name: String): void
+        +close(): void
+    }
 
-class ServerMain {
-    +main(args: String[]): void
-}
+    class SessionManager {
+        -sessions: List<Session>
+        +add(session: Session): void
+        +remove(session: Session): void
+        +sendAll(message: String): void
+        +getAllUsername(): List<String>
+        +closeAll(): void
+    }
 
-class Client {
-    -socket: Socket
-    -input: DataInputStream
-    -output: DataOutputStream
-    -readHandler: ReadHandler
-    -writeHandler: WriteHandler
-    +start(): void
-    +close(): void
-}
+    class CommandManager {
+        <<interface>>
+        +execute(totalMessage: String, session: Session): void
+    }
 
-class ClientMain {
-    +main(args: String[]): void
-}
+    class CommandManagerV1 {
+        -sessionManager: SessionManager
+        +execute(totalMessage: String, session: Session): void
+    }
 
-class ReadHandler {
-    -input: DataInputStream
-    -client: Client
-    +run(): void
-    +close(): void
-}
+    class CommandManagerV2 {
+        -sessionManager: SessionManager
+        +execute(totalMessage: String, session: Session): void
+    }
 
-class WriteHandler {
-    -output: DataOutputStream
-    -client: Client
-    +run(): void
-    +close(): void
-}
+    ClientMain --> Client
+    Client --> ReadHandler
+    Client --> WriteHandler
+    ReadHandler --> Client
+    WriteHandler --> Client
 
-CommandManager <|.. CommandManagerV1
-CommandManager <|.. CommandManagerV2
+    ServerMain --> Server
+    Server --> SessionManager
+    Server --> CommandManager
+    Server --> Session
 
-ServerMain --> Server
-Server --> SessionManager
-Server --> CommandManager
-Server --> Session
+    Session --> CommandManager
+    Session --> SessionManager
 
-Session --> CommandManager
-Session --> SessionManager
-
-ClientMain --> Client
-Client --> ReadHandler
-Client --> WriteHandler
-
-ReadHandler --> Client
-WriteHandler --> Client
-
-@enduml
+    CommandManager <|.. CommandManagerV1
+    CommandManager <|.. CommandManagerV2
+```
 
 
 ## ✅ 실행 흐름 요약
