@@ -202,7 +202,7 @@ public void run() {
 - 서버로부터 메시지 수신 후 콘솔 출력
 
 ## UML 흐름도
-```mermaid
+
 @startuml
 title Chat Program UML Diagram
 
@@ -302,7 +302,7 @@ ReadHandler --> Client
 WriteHandler --> Client
 
 @enduml
-```
+
 
 ## ✅ 실행 흐름 요약
 ```
