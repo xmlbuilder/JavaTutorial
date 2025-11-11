@@ -243,3 +243,84 @@ List<Person> people2 = names.stream()
 
 ```
 ---
+
+# 특정 객체의 인스턴스 메서드 참조 / 임의 객체의 인스턴스 메서드 참조
+특정 객체의 인스턴스 메서드 참조와 임의 객체의 인스턴스 메서드 참조의 차이점과 사용법을 확실하게 정리.  
+아래는 개념 정리 → 차이점 → 샘플 코드 → 활용 예 순으로 구성했습니다.
+
+## 🔍 개념 요약
+
+| 메서드 참조 문법       | 람다 변환 방식                     | 대상 객체         |
+|------------------------|------------------------------------|-------------------|
+| person::introduce      | () -> person.introduce()           | `person (고정됨)`   |
+| Person::introduce      | (person) -> person.introduce()     | `Person (동적 전달)`|
+
+## ⚖️ 차이점 비교
+
+| 항목                     | `person::introduce`                   | `Person::introduce`                     |
+|--------------------------|----------------------------------------|-----------------------------------------|
+| 문법                     | 객체명::인스턴스메서드                | 클래스명::인스턴스메서드               |
+| 람다 변환                | `() -> person.introduce()`            | `(person) -> person.introduce()`       |
+| 함수형 인터페이스 예시  | `Supplier<String>`                    | `Function<Person, String>`             |
+| 대상 객체                | 선언 시점에 고정됨                    | 실행 시점에 전달됨                     |
+
+
+## 🧪 샘플 코드 예제
+### 1. 특정 객체의 인스턴스 메서드 참조
+```java
+public class Person {
+    private String name = "JungHwan";
+    public String introduce() {
+        return "I am " + name;
+    }
+}
+```
+```java
+Person person = new Person();
+Supplier<String> instanceMethod1 = person::introduce;
+System.out.println(instanceMethod1.get()); // I am JungHwan
+```
+
+- Supplier<String>은 매개변수가 없고, person 객체가 고정되어 있음
+
+### 2. 임의 객체의 인스턴스 메서드 참조
+```java
+public class Person {
+    private String name;
+    public Person(String name) {
+        this.name = name;
+    }
+    public String introduce() {
+        return "I am " + name;
+    }
+}
+```
+```java
+Function<Person, String> fun1 = Person::introduce;
+
+System.out.println(fun1.apply(new Person("Alice"))); // I am Alice
+System.out.println(fun1.apply(new Person("Bob")));   // I am Bob
+``
+- Function<Person, String>은 매개변수로 Person 객체를 받아서 실행 시점에 동적으로 처리
+
+### 🎯 활용 예: 리스트에서 이름 출력
+```java
+List<Person> people = Arrays.asList(
+    new Person("Alice"),
+    new Person("Bob"),
+    new Person("Charlie")
+);
+```
+```java
+// 임의 객체의 인스턴스 참조 사용
+people.stream()
+      .map(Person::introduce)
+      .forEach(System.out::println);
+```
+- Person::introduce는 map() 내부에서 각 Person 객체에 대해 호출됨
+- 매우 자주 쓰이는 패턴이며, 코드가 간결하고 가독성이 높음
+
+## ✅ 결론
+- person::introduce → 고정된 객체를 대상으로 할 때 사용
+- Person::introduce → 다양한 객체를 처리할 때 사용 (스트림, 매핑, 콜백 등에서 매우 유용)
+
