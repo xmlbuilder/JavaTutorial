@@ -77,9 +77,9 @@ public class OptionalExample {
 ```
 
 ### ⚠️ 사용 시 주의사항
-- get()은 값이 없을 경우 예외 발생 → 반드시 isPresent() 또는 ifPresent()로 체크
+- get()은 값이 없을 경우 예외 발생 → 반드시 `isPresent()` 또는 `ifPresent()` 로 체크
 - Optional은 필드로 사용 지양 → 메서드 리턴값에만 사용하는 것이 권장
-- Optional.empty()는 명시적 null 표현 → 의미 있는 기본값이 있다면 orElse()로 처리
+- `Optional.empty()` 는 명시적 null 표현 → 의미 있는 기본값이 있다면 `orElse()` 로 처리
 
 ---
 
