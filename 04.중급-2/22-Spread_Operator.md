@@ -35,7 +35,7 @@ printMany(fruits); // 배열을 그대로 전달
 ## ❌ Java에서 직접적인 spread operator는 없음
 Java에서는 다음과 같은 문법은 불가능합니다:
 
-``java
+```java
 // ❌ Java에서는 지원되지 않음
 doSomething(...args);
 ```
