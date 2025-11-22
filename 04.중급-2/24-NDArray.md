@@ -130,3 +130,5 @@ System.out.println(nd_array);
 - DJL (Deep Java Library): Java에서 딥러닝과 수치 연산을 할 수 있게 해주는 라이브러리
 - NumPy처럼 NDArray를 지원하며, PyTorch, TensorFlow, MXNet 백엔드도 연결 가능
 - 공식 사이트: https://djl.ai
+---
+
