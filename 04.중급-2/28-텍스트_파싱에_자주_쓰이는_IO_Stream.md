@@ -8,8 +8,6 @@ import java.io.*;
 public class ReaderWriterTest {
     public static void main(String[] args){
         String strFileName = "Output.txt";
-
-
         try(BufferedReader br = new BufferedReader(new FileReader(strFileName))){
            String str;
            while((str = br.readLine()) != null){
@@ -18,8 +16,8 @@ public class ReaderWriterTest {
         }catch (IOException e){
             e.printStackTrace();
         }
-
-
+```
+```java
         try(BufferedWriter wr = new BufferedWriter(new FileWriter("Sample.txt"))){
             wr.write("Sample1");
             wr.newLine();
@@ -35,7 +33,6 @@ public class ReaderWriterTest {
         }
     }
 }
-
 ```
 
 ## 📦 Java 텍스트 파싱용 I/O 스트림 요약
@@ -58,7 +55,8 @@ public class ReaderWriterTest {
 BufferedReader br = new BufferedReader(
     new InputStreamReader(new FileInputStream("Output.txt"), "UTF-8")
 );
-
+```
+```java
 BufferedWriter bw = new BufferedWriter(
     new OutputStreamWriter(new FileOutputStream("Sample.txt"), "UTF-8")
 );
