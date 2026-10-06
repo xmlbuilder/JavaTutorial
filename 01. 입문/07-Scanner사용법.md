@@ -1,10 +1,10 @@
-## 🎯 자바 Scanner
+## 📘 자바 Scanner
 
-### 🧾 Scanner 기본 사용법
+### 📌 Scanner 기본 사용법
 ```java
 Scanner scanner = new Scanner(System.in);
 ```
-### 주요 메서드
+### 📌 주요 메서드
 | 메서드              | 설명                          |
 |---------------------|-------------------------------|
 | `nextLine()`        | 문자열 입력 (엔터까지)        |
@@ -12,8 +12,8 @@ Scanner scanner = new Scanner(System.in);
 | `nextDouble()`      | 실수 입력                     |
 
 
-### 🔁 Scanner 반복 예제
-#### 예제 1: 문자열 반복 입력
+### 📌 Scanner 반복 예제
+#### 🔹 예제 1: 문자열 반복 입력
 ```java
 while (true) {
     System.out.print("문자열을 입력하세요(exit: 종료):");
@@ -27,8 +27,8 @@ while (true) {
 ```
 
 
-### 🧪 문제와 풀이 1
-#### 문제: 이름과 나이 입력
+### 📌 문제와 풀이 1
+#### 🔹 문제: 이름과 나이 입력
 ```java
 System.out.print("당신의 이름을 입력하세요:");
 String name = scanner.nextLine();
@@ -41,7 +41,7 @@ System.out.println("당신의 이름은 " + name + "이고, 나이는 " + age + 
 
 
 
-#### 문제: 홀수 짝수 판별
+#### 🔹 문제: 홀수 짝수 판별
 ```java
 System.out.print("하나의 정수를 입력하세요:");
 int number = scanner.nextInt();
@@ -54,7 +54,7 @@ if (number % 2 == 0) {
 ```
 
 
-#### 문제: 음식 주문 총 가격 계산
+#### 🔹 문제: 음식 주문 총 가격 계산
 ```java
 System.out.print("음식 이름을 입력해주세요: ");
 String foodName = scanner.nextLine();
@@ -71,7 +71,7 @@ System.out.println(foodName + " " + foodQuantity + "개를 주문하셨습니다
 ```
 
 
-#### 문제: 구구단 출력
+#### 🔹 문제: 구구단 출력
 ```java
 System.out.print("구구단의 단 수를 입력해주세요: ");
 int n = scanner.nextInt();
@@ -83,8 +83,8 @@ for (int i = 1; i <= 9; i++) {
 ```
 
 
-### 🧪 문제와 풀이 2
-#### 문제: 변수 값 교환
+### 📌 문제와 풀이 2
+#### 🔹 문제: 변수 값 교환
 ```java
 int a = 10;
 int b = 20;
@@ -99,7 +99,7 @@ System.out.println("b = " + b);
 
 ```
 
-#### 문제: 사이 숫자 출력
+#### 🔹 문제: 사이 숫자 출력
 ```java
 System.out.print("첫 번째 숫자를 입력하세요:");
 int num1 = scanner.nextInt();
@@ -123,8 +123,8 @@ for (int i = num1; i <= num2; i++) {
 ```
 
 
-### 🧪 문제와 풀이 3
-#### 문제: 이름과 나이 반복 입력
+### 📌  문제와 풀이 3
+#### 🔹 문제: 이름과 나이 반복 입력
 ```java
 while (true) {
     System.out.print("이름을 입력하세요 (종료를 입력하면 종료): ");
@@ -141,7 +141,7 @@ while (true) {
 
 ```
 
-#### 문제: 상품 가격 계산 반복
+#### 🔹 문제: 상품 가격 계산 반복
 ```java
 while (true) {
     System.out.print("상품의 가격을 입력하세요 (-1을 입력하면 종료): ");
@@ -157,8 +157,8 @@ while (true) {
 ```
 
 
-### 🧪 문제와 풀이 4
-#### 문제: 입력한 숫자의 합계와 평균
+### 📌 문제와 풀이 4
+#### 🔹 문제: 입력한 숫자의 합계와 평균
 ```java
 int sum = 0;
 int count = 0;
@@ -177,7 +177,7 @@ System.out.println("입력한 숫자들의 평균: " + average);
 ```
 
 
-#### 문제: 상품 구매 프로그램
+#### 🔹 문제: 상품 구매 프로그램
 ```java
 int totalCost = 0;
 
@@ -211,16 +211,16 @@ while (true) {
 ```
 
 
-### 📥 정리
+### 📌 정리
 - Scanner는 사용자 입력을 처리하는 핵심 도구
 - 반복문과 조건문을 활용하면 실전형 프로그램을 만들 수 있음
 - 문제를 직접 풀고, 코드를 따라치며 몸으로 익히는 것이 중요
 
 ---
 
-# 🧠 nextInt() 다음에 nextLine()을 호출할 때 주의할 점
+### 📌 `nextInt()` 다음에 `nextLine()` 을 호출할 때 주의할 점
 
-## 🔍 문제 상황
+#### 🔹 문제 상황
 ```java
 Scanner scanner = new Scanner(System.in);
 int number = scanner.nextInt();   // 숫자 입력 (예: 10)
@@ -228,26 +228,26 @@ String text = scanner.nextLine(); // 바로 다음 줄에서 문자열 입력
 ```
 - 위 코드에서 text는 **빈 문자열("")** 이 될 수 있음
 
-## 📌 이유
+#### 🔹 이유
 - nextInt()는 숫자만 읽고 **줄바꿈 문자(\n)** 는 읽지 않음
 - 그래서 nextLine()은 남아 있던 줄바꿈을 그대로 읽어버림
 
-## ✅ 해결 방법
-### 방법 1: nextLine()을 한 번 더 호출해서 줄바꿈 제거
+### 📌 해결 방법
+#### 🔹 방법 1: nextLine()을 한 번 더 호출해서 줄바꿈 제거
 ```java
 int number = scanner.nextInt();
 scanner.nextLine(); // 줄바꿈 제거용
 String text = scanner.nextLine(); // 실제 문자열 입력
 ```
 
-### 방법 2: 처음부터 nextLine()으로 숫자도 문자열로 받고 Integer.parseInt()로 변환
+#### 🔹 방법 2: 처음부터 nextLine()으로 숫자도 문자열로 받고 Integer.parseInt()로 변환
 ```java
 int number = Integer.parseInt(scanner.nextLine());
 String text = scanner.nextLine();
 ```
 
 
-## 💡 팁
+### 📌 팁
 - nextInt(), nextDouble() 등 숫자 입력 후에는 항상 nextLine()으로 줄바꿈을 제거하는 습관을 들이면 좋음
 - Scanner는 줄 단위 입력과 토큰 단위 입력이 섞일 때 주의가 필요
 
