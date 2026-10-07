@@ -1,26 +1,26 @@
-# 🧠 자바 Class 요약
-## 📌 개요
-자바의 Class 클래스는 클래스의 메타데이터(정보)를 다루기 위한 도구로,  
+## 📘 자바 Class 요약
+### 📌 개요
+- 자바의 Class 클래스는 클래스의 메타데이터(정보)를 다루기 위한 도구로,  
 실행 중인 애플리케이션에서 클래스의 구조와 동작을 동적으로 조회하고 조작할 수 있게 해줍니다.
 
-## 🔧 주요 기능
+### 📌 주요 기능
 - 타입 정보 조회: 클래스 이름, 슈퍼클래스, 인터페이스, 접근 제한자 등 확인 가능
 - 리플렉션 (Reflection):
-- 필드, 메서드, 생성자 조회
-- 객체 생성 및 메서드 호출 가능
+    - 필드, 메서드, 생성자 조회
+    - 객체 생성 및 메서드 호출 가능
 - 동적 로딩 및 인스턴스 생성:
-- Class.forName()으로 클래스 로딩
+    - Class.forName()으로 클래스 로딩
 - newInstance() 또는 getDeclaredConstructor().newInstance()로 객체 생성
 - 애노테이션 처리: 클래스에 적용된 애노테이션을 조회하고 활용 가능
 
-### 🔍 Class 객체 얻는 방법
+### 📌 Class 객체 얻는 방법
 ```java
 Class clazz = String.class; // 클래스에서 직접
 Class clazz = new String().getClass(); // 인스턴스에서
 Class clazz = Class.forName("java.lang.String"); // 문자열로
 ```
 
-### 클래스 생성 코드
+### 📌 클래스 생성 코드
 ```java
 package lang.clazz;
 public class Hello {
@@ -40,7 +40,7 @@ public class ClassCreateMain {
 ```
 
 
-### 🧪 예제 코드 요약
+### 📌 예제 코드 요약
 ```java
 Class clazz = String.class;
 Field[] fields = clazz.getDeclaredFields(); // 모든 필드 출력
@@ -55,43 +55,43 @@ System.out.println("result = " + hello.hello());
 ```
 
 
-### 🧑‍💻 용어 팁
+### 📌 용어 팁
 - class는 자바 예약어이므로 변수명으로 사용할 수 없음 → 관례적으로 clazz 사용
 
-### 🪞 리플렉션이란?
-클래스의 구조를 런타임에 분석하고 조작하는 기능.  
-객체 생성, 메서드 호출, 애노테이션 처리 등 다양한 동적 작업이 가능하며, 프레임워크에서 널리 활용됨.
+### 📌 리플렉션이란?
+- 클래스의 구조를 런타임에 분석하고 조작하는 기능.  
+- 객체 생성, 메서드 호출, 애노테이션 처리 등 다양한 동적 작업이 가능하며, 프레임워크에서 널리 활용됨.
 
 ---
 
-# ⚙️ 자바 System 클래스 요약
-## 📌 개요
-System 클래스는 자바에서 시스템과 관련된 다양한 기능을 제공하는 유틸리티 클래스입니다.  
-대부분의 메서드는 정적(static)으로 선언되어 있어 바로 호출할 수 있습니다.
+## 📘 자바 System 클래스 요약
+### 📌 개요
+- System 클래스는 자바에서 시스템과 관련된 다양한 기능을 제공하는 유틸리티 클래스입니다.  
+- 대부분의 메서드는 정적(static)으로 선언되어 있어 바로 호출할 수 있습니다.
 
-## 🔧 주요 기능
-### 🕒 시간 측정
+### 📌 주요 기능
+#### 🔹 시간 측정
 - System.currentTimeMillis() : 현재 시간을 밀리초 단위로 반환
 - System.nanoTime() : 현재 시간을 나노초 단위로 반환 (정밀한 시간 측정에 유용)
-### 🌱 환경 변수
+#### 🔹 환경 변수
 - System.getenv() : 운영체제에서 설정한 환경 변수들을 Map 형태로 반환
-### 🛠️ 시스템 속성
+#### 🔹 시스템 속성
 - System.getProperties() : 시스템 전체 속성 정보를 Properties 객체로 반환
 - System.getProperty(String key) : 특정 시스템 속성 값을 조회
-### 📤 표준 스트림
+#### 🔹 표준 스트림
 - System.in : 표준 입력 스트림 (키보드 입력 등)
 - System.out : 표준 출력 스트림 (콘솔 출력)
 - System.err : 표준 오류 출력 스트림
-### 🚀 프로그램 종료
+#### 🔹 프로그램 종료
 - System.exit(int status) : 프로그램을 종료하며 상태 코드를 반환
-- 0 : 정상 종료
-- 0 이외 : 오류 또는 비정상 종료
-### 📦 배열 고속 복사
+    - 0 : 정상 종료
+    - 0 이외 : 오류 또는 비정상 종료
+#### 🔹 배열 고속 복사
 - System.arraycopy(src, srcPos, dest, destPos, length) :
-- 배열을 빠르게 복사하는 메서드
-- 반복문보다 훨씬 빠른 성능 제공
+    - 배열을 빠르게 복사하는 메서드
+    - 반복문보다 훨씬 빠른 성능 제공
 
-### 🧪 예제 요약
+### 📌 예제 요약
 ```java
 
 long currentTimeMillis = System.currentTimeMillis();
@@ -105,7 +105,6 @@ char[] originalArray = {'h', 'e', 'l', 'l', 'o'};
 char[] copiedArray = new char[5];
 System.arraycopy(originalArray, 0, copiedArray, 0, originalArray.length);
 
-
 System.out.println(Arrays.toString(copiedArray)); // 복사된 배열 출력
 
 System.exit(0); // 프로그램 종료
@@ -113,37 +112,37 @@ System.exit(0); // 프로그램 종료
 
 ---
 
-# 🧮 자바 Math 클래스 요약
-## 📌 개요
-Math 클래스는 다양한 수학 연산을 위한 정적(static) 메서드를 제공하는 유틸리티 클래스입니다.  
-복잡한 수학 계산을 간편하게 처리할 수 있도록 도와줍니다.
+## 📘 자바 Math 클래스 요약
+### 📌 개요
+- Math 클래스는 다양한 수학 연산을 위한 정적(static) 메서드를 제공하는 유틸리티 클래스입니다.  
+- 복잡한 수학 계산을 간편하게 처리할 수 있도록 도와줍니다.
 
-## 🔢 주요 메서드 분류
-### 1. 기본 연산
+### 📌 주요 메서드 분류
+#### 🔹 1. 기본 연산
 - abs(x) : 절대값
 - max(a, b) : 최대값
 - min(a, b) : 최소값
-### 2. 지수 및 로그
+#### 🔹 2. 지수 및 로그
 - exp(x) : e^x 계산
 - log(x) : 자연 로그
 - log10(x) : 로그 10
 - pow(a, b) : a의 b 제곱
-### 3. 반올림 및 정밀도
+#### 🔹 3. 반올림 및 정밀도
 - ceil(x) : 올림 (소수점 올림)
 - floor(x) : 내림 (소수점 내림)
 - rint(x) : 가장 가까운 정수로 반올림 (double 반환)
 - round(x) : 반올림 (long 또는 int 반환)
-### 4. 삼각 함수
+#### 🔹 4. 삼각 함수
 - sin(x) : 사인
 - cos(x) : 코사인
 - tan(x) : 탄젠트
-### 5. 기타 유용한 기능
+#### 🔹 5. 기타 유용한 기능
 - sqrt(x) : 제곱근
 - cbrt(x) : 세제곱근
 - random() : 0.0 이상 1.0 미만의 난수(double) 반환
-💡 고정밀 계산이 필요할 경우 BigDecimal 클래스 사용을 고려하세요.
+- 고정밀 계산이 필요할 경우 BigDecimal 클래스 사용을 고려.
 
-### 예제 코드
+### 📌 예제 코드
 ```java
 public class MathMain {
     public static void main(String[] args) {
@@ -164,7 +163,7 @@ public class MathMain {
 }
 
 ```
-### 🧪 예제 출력 예시
+#### 🔹 예제 출력 예시
 ```
 Math.max(10, 20) → 20
 Math.min(10, 20) → 10
@@ -178,8 +177,8 @@ Math.random() → 0.006347084592260965
 
 ---
 
-# 🎲 자바 Random 클래스 요약
-## 📌 개요
+## 📘 자바 Random 클래스 요약
+### 📌 개요
 Random 클래스는 다양한 타입의 난수를 생성할 수 있는 클래스입니다.  
 Math.random() 보다 더 정교한 제어가 가능합니다. java.util 패키지에 포함되어 있습니다.
 
