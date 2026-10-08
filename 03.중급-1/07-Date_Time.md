@@ -1,60 +1,60 @@
-# 날짜와 시간
+## 📘 날짜와 시간
 
-## 📅 날짜와 시간 라이브러리가 필요한 이유
-날짜와 시간 계산은 단순해 보이지만 실제로는 매우 복잡합니다.  
-정확한 처리를 위해서는 다음과 같은 요소들을 고려해야 합니다:
+### 📌 날짜와 시간 라이브러리가 필요한 이유
+- 날짜와 시간 계산은 단순해 보이지만 실제로는 매우 복잡합니다.  
+- 정확한 처리를 위해서는 다음과 같은 요소들을 고려해야 합니다:
 
-### 1. 날짜 간 차이 계산
+### 📌 1. 날짜 간 차이 계산
 - 각 달의 일수가 다름 (예: 1월은 31일, 2월은 28일 또는 29일)
 - 윤년 여부에 따라 일수 변화
 - 단순한 뺄셈으로는 정확한 일수 계산이 어려움
-#### 예시:
+#### 🔹 예시:
 ```
 2024년 1월 1일 → 2024년 2월 1일 = 31일
 2024년 1월 1일 → 2024년 3월 1일 = 60일 (윤년 고려)
 ```
-### 2. 윤년 계산
+### 📌 2. 윤년 계산
 - 지구 공전 주기: 약 365.2425일
 - 윤년 규칙:
-- 4년마다 윤년
-- 100년 단위는 윤년 아님
-- 400년 단위는 윤년
-#### 예시:
+    - 4년마다 윤년
+    - 100년 단위는 윤년 아님
+    - 400년 단위는 윤년
+#### 🔹 예시:
 ```
 2000년, 2020년 → 윤년
 1900년, 2100년 → 윤년 아님
 ```
 
-### 3. 일광 절약 시간(DST)
+### 📌 3. 일광 절약 시간(DST)
 - 특정 기간(보통 3월~10월)에 1시간 앞당김
 - 지역마다 적용 여부와 시작/종료 날짜가 다름
 - 시간 계산 시 1시간 오차 발생 가능
-### 예시:
+#### 🔹 예시:
 ```
 베를린은 3월 마지막 일요일 ~ 10월 마지막 일요일까지 DST 적용
 ```
-### 4. 타임존 계산
+### 📌 4. 타임존 계산
 - 세계는 UTC 기준으로 다양한 타임존을 가짐
 - 타임존 간 시간 차이 계산 필요
 - DST 적용 시 타임존 차이도 변함
-#### 예시:
+#### 🔹 예시:
 ```
 서울(UTC+9)에서 오후 9시 → 베를린(UTC+1)은 오후 1시
 DST 적용 시 → 베를린은 UTC+2 → 오후 2시
 ```
 
-## 🕰️ 자바 날짜와 시간 라이브러리의 역사
-### JDK 1.0 – java.util.Date
+### 📌 자바 날짜와 시간 라이브러리의 역사
+#### 🔹 JDK 1.0 – java.util.Date
 - 타임존 처리 부족
 - 날짜 연산 불편
 - 변경 가능한 객체 → 버그 발생 가능
-### JDK 1.1 – java.util.Calendar
+#### 🔹 JDK 1.1 – java.util.Calendar
 - 타임존 지원 개선
 - 여전히 사용성 낮고, 불변성 부족
-### Joda-Time (외부 라이브러리)
+#### 🔹 Joda-Time (외부 라이브러리)
 - 사용성, 성능, 불변성 개선
 - 자바 표준이 아니어서 별도 추가 필요
-### JDK 8 – java.time 패키지 (JSR-310)
+#### 🔹 JDK 8 – java.time 패키지 (JSR-310)
 - Joda-Time의 장점을 표준 API로 통합
 - 불변 객체 기반 → 사이드 이펙트 방지
 - 직관적인 API 제공
@@ -65,13 +65,14 @@ DST 적용 시 → 베를린은 UTC+2 → 오후 2시
 - Hibernate가 대중화되자 자바는 이를 기반으로 JPA 표준 정의
 - java.time도 같은 방식으로 Joda-Time을 흡수하여 표준화
 
-## ✅ 결론
-날짜와 시간은 단순한 숫자 계산이 아니라  
-윤년, 타임존, DST, 불변성, 정확성 등 다양한 요소를 고려해야 하는 복잡한 도메인입니다.  
-따라서 전문적인 라이브러리의 사용은 필수이며, 자바에서는 java.time이 그 역할을 안정적으로 수행합니다.  
+### 📌 결론
+- 날짜와 시간은 단순한 숫자 계산이 아니라  
+- 윤년, 타임존, DST, 불변성, 정확성 등 다양한 요소를 고려해야 하는 복잡한 도메인입니다.  
+- 따라서 전문적인 라이브러리의 사용은 필수이며, 자바에서는 java.time이 그 역할을 안정적으로 수행합니다.  
 
 
-## 📅 java.time 클래스 구성 요소 비교
+### 📌 java.time 클래스 구성 요소 비교
+
 | Class or Enum    | Year | Month | Day | Hours | Minutes | Seconds* | Zone Offset | Zone ID | toString Output                          |
 |------------------|------|-------|-----|-------|---------|----------|-------------|---------|------------------------------------------|
 | LocalDate        | ✔    | ✔     | ✔   |       |         |          |             |         | 2013-08-20                               |
@@ -84,48 +85,48 @@ DST 적용 시 → 베를린은 UTC+2 → 오후 2시
 | Year             | ✔    |       |     |       |         |          |             |         | 2013                                     |
 | YearMonth        | ✔    | ✔     |     |       |         |          |             |         | 2013-08                                  |
 | MonthDay         |      | ✔     | ✔   |       |         |          |             |         | --08-20                                  |
-| Instant          |      |       |     |       |         | ***      |             |         | 2013-08-20T15:16:26.351Z                 |
-| Period           | ✔    | **    | ✔   |       |         |          |             |         | P10D (10 days)                           |
-| Duration         |      |       |     |       |         | **       |             |         | PT20H (20 hours)                         |
+| Instant          |      |       |     |       |         | `***`      |             |         | 2013-08-20T15:16:26.351Z                 |
+| Period           | ✔    | `**`    | ✔   |       |         |          |             |         | P10D (10 days)                           |
+| Duration         |      |       |     |       |         | `**`       |             |         | PT20H (20 hours)                         |
 
-### Legend:
+#### 🔹 Legend:
 ✔ : 지원됨  
-** : 해당 단위를 직접 저장하지 않지만 관련 메서드 제공  
-*** : 나노초 단위로 캡처되며, 일부 경우에만 포함됨
+`**` : 해당 단위를 직접 저장하지 않지만 관련 메서드 제공  
+`***` : 나노초 단위로 캡처되며, 일부 경우에만 포함됨
 
 ---
 
-## 🗓️ 기본 날짜/시간 클래스
-### LocalDate
+### 📌 기본 날짜/시간 클래스
+#### 🔹 LocalDate
 - 용도: 날짜만 표현 (년, 월, 일)
 - 예시: 2013-11-21
 - 특징: 불변 객체, plusDays(), of() 등으로 생성 및 계산
 
-#### 예시
+#### 🔹 예시
 ```java
 LocalDate nowDate = LocalDate.now(); //오늘 날짜 = 2024-02-09
 LocalDate ofDate = LocalDate.of(2013, 11, 21); //지정 날짜 = 2013-11-21
 LocalDate plusDays = ofDate.plusDays(10); //지정 날짜+10d = 2013-12-01
 ```
 
-### LocalTime
+#### 🔹 LocalTime
 - 용도: 시간만 표현 (시, 분, 초, 나노초)
 - 예시: 08:20:30.213
 - 특징: 불변 객체, plusSeconds(), of() 등으로 생성 및 계산
 
-#### 예시
+#### 🔹 예시
 ```java
 LocalTime nowTime = LocalTime.now();  //현재 시간 = 11:52:51.219602
 LocalTime ofTime = LocalTime.of(9, 10, 30); //지정 시간 = 09:10:30
 LocalTime ofTimePlus = ofTime.plusSeconds(30); //지정 시간+30s = 09:11:00
 ```
 
-#### LocalDateTime
+#### 🔹 LocalDateTime
 - 용도: 날짜와 시간 모두 표현
 - 예시: 2013-11-21T08:20:30.213
 - 특징: LocalDate와 LocalTime을 합친 구조, 타임존 미포함
 
-#### 예시
+#### 🔹 예시
 ```java
 LocalDateTime nowDt = LocalDateTime.now(); //현재 날짜시간 = 2024-02-09T11:54:54.389163
 LocalDateTime ofDt = LocalDateTime.of(2016, 8, 16, 8, 10, 1); //지정 날짜시간 = 2016-08-16T08:10:01
@@ -141,7 +142,7 @@ LocalDateTime localDateTime = LocalDateTime.of(localDate, localTime); //localDat
 LocalDateTime ofDtPlus = ofDt.plusDays(1000); //지정 날짜시간+1000d = 2019-05-13T08:10:01
 LocalDateTime ofDtPlus1Year = ofDt.plusYears(1); //지정 날짜시간+1년 = 2017-08-16T08:10:01
 ```
-## 🔧 주요 기능 요약
+### 📌 주요 기능 요약
 | 기능 구분     | 관련 메서드                             | 설명                                      |
 |---------------|------------------------------------------|-------------------------------------------|
 | 생성          | `now()`, `of(...)`                      | 현재 또는 특정 날짜/시간 객체 생성         |
@@ -149,13 +150,14 @@ LocalDateTime ofDtPlus1Year = ofDt.plusYears(1); //지정 날짜시간+1년 = 20
 | 분리/합체     | `toLocalDate()`, `toLocalTime()`        | 날짜/시간 분리 또는 재조합                 |
 | 비교          | `isBefore()`, `isAfter()`, `isEqual()`  | 시간 비교 (이전/이후/동일 여부 판단)       |
 
+---
 
-## 🌍 타임존 관련 클래스
-### ZonedDateTime
+### 📌 타임존 관련 클래스
+#### 🔹 ZonedDateTime
 - 용도: 타임존 포함 날짜/시간 표현
 - 예시: 2013-11-21T08:20:30.213+09:00[Asia/Seoul]
 - 특징: DST(일광 절약 시간제) 자동 반영, 실제 세계 시간 표현에 적합
-#### 예시
+#### 🔹 예시
 ```java
 for (String availableZoneId : ZoneId.getAvailableZoneIds()) {
     ZoneId zoneId = ZoneId.of(availableZoneId);
@@ -176,31 +178,31 @@ ZoneId seoulZoneId = ZoneId.of("Asia/Seoul"); // seoulZoneId = Asia/Seoul
 }
 ```
 
-### OffsetDateTime
+#### 🔹 OffsetDateTime
 - 용도: UTC 오프셋 기반 날짜/시간 표현
 - 예시: 2013-11-21T08:20:30.213+09:00
 - 특징: 타임존 정보 없음, DST 미적용
-#### 예시
+#### 🔹 예시
 ```java
 OffsetDateTime nowOdt = OffsetDateTime.now();
 LocalDateTime ldt = LocalDateTime.of(2030, 1, 1, 13, 30, 50);
 OffsetDateTime odt = OffsetDateTime.of(ldt, ZoneOffset.of("+01:00"));
 ```
 
-## 📆 날짜 단위 클래스
+### 📌 날짜 단위 클래스
 - Year: 연도만 표현 (2013)
 - Month: 월만 표현 (AUGUST)
 - YearMonth: 연도와 월 (2013-08)
 - MonthDay: 월과 일 (--08-20)
 - DayOfWeek: 요일 표현 (MONDAY, TUESDAY 등)
 
-## ⏱️ 시간 지점 및 간격 클래스
-### Instant
+### 📌 시간 지점 및 간격 클래스
+#### 🔹 Instant
 - 용도: UTC 기준 시간 지점 표현
 - 예시: 2013-08-20T15:16:26.351Z
 - 특징: 나노초 정밀도, 1970년 기준 초 단위 경과 시간
 
-#### 예시
+#### 🔹 예시
 ```java
 Instant now = Instant.now(); //UTC 기준
 ZonedDateTime zdt = ZonedDateTime.now(); //now = 2024-02-13T06:46:07.101393Z
