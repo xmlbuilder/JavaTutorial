@@ -224,32 +224,32 @@ long laterEpochSecond = later.getEpochSecond(); //laterEpochSecond = 3600
 
 ---
 
-## ⏳ 자바의 시간 간격 표현 – Period vs Duration
-### 🧠 시간 표현 방식
+### 📌 자바의 시간 간격 표현 – Period vs Duration
+#### 🔹 시간 표현 방식
 | 구분             | 설명                                | 예시                                  |
 |------------------|-------------------------------------|----------------------------------------|
 | 특정 시점 (시각) | 날짜나 시간의 한 지점을 표현         | 2013년 8월 16일, 11시 30분, 생일 등     |
 | 시간의 간격 (기간)| 두 시점 사이의 차이 또는 지속 시간 표현 | 3개월 남음, 4년 공부, 3분 끓이기 등     |
 
-### Period
+### 📌 Period
 - 용도: 날짜 간격 표현 (년, 월, 일)
 - 예시: P10D (10일)
 - 주요 메서드: getYears(), getMonths(), getDays()
 
-#### ✅ 생성
+#### 🔹 생성
 ```java
 Period.of(1, 3, 10);      // 1년 3개월 10일
 Period.ofDays(10);        // 10일
 Period.between(start, end); // 두 날짜 사이의 간격
 ```
 
-#### ✅ 계산 예시
+#### 🔹 계산 예시
 ```java
 LocalDate date = LocalDate.of(2030, 1, 1);
 LocalDate result = date.plus(Period.ofDays(10)); // → 2030-01-11
 ```
 
-#### ✅ 차이 계산 예시
+#### 🔹 차이 계산 예시
 ```java
 Period between = Period.between(
     LocalDate.of(2023, 1, 1),
@@ -257,7 +257,7 @@ Period between = Period.between(
 );
 ```
 
-#### 예시
+#### 🔹 예시
 ```java
 Period period = Period.ofDays(10); //period = P10D
 
@@ -271,25 +271,25 @@ LocalDate endDate = LocalDate.of(2023, 4, 2);
 Period between = Period.between(startDate, endDate); //기간: 3개월 1일
 ```
 
-### Duration
+### 📌 Duration
 - 용도: 시간 간격 표현 (시, 분, 초)
 - 예시: PT20H (20시간)
 - 주요 메서드: toHours(), toMinutes(), getSeconds(), getNano()
 
-#### ✅ 생성
+#### 🔹 생성
 ```java
 Duration.ofHours(2);      // 2시간
 Duration.ofMinutes(30);   // 30분
 Duration.between(start, end); // 두 시간 사이의 간격
 ```
 
-#### ✅ 계산 예시
+#### 🔹 계산 예시
 ```java
 LocalTime time = LocalTime.of(1, 0);
 LocalTime result = time.plus(Duration.ofMinutes(30)); // → 01:30
 ```
 
-#### ✅ 차이 계산 예시
+#### 🔹 차이 계산 예시
 ```java
 Duration between = Duration.between(
     LocalTime.of(9, 0),
@@ -298,7 +298,7 @@ Duration between = Duration.between(
 // → 3600초, 1시간 0분
 ```
 
-#### 예시
+#### 🔹 예시
 ```java
 //생성
 Duration duration = Duration.ofMinutes(30); //duration = PT30M
@@ -313,7 +313,7 @@ LocalTime end = LocalTime.of(10, 0);
 Duration between = Duration.between(start, end); //차이: 3600초
 ```
 
-#### 📊 Period vs Duration 비교
+### 📌 Period vs Duration 비교
 
 | 항목         | Period                          | Duration                          |
 |--------------|----------------------------------|-----------------------------------|
@@ -323,21 +323,21 @@ Duration between = Duration.between(start, end); //차이: 3600초
 | 계산 대상    | 날짜에 기간 더하기               | 시간에 지속 시간 더하기           |
 | 차이 계산    | 날짜 간 차이 → `Period` 반환     | 시간 간 차이 → `Duration` 반환    |
 
-#### 💡 실무 팁
+### 📌 실무 팁
 - 날짜 간격: 프로젝트 기간, 기념일 계산 → Period
 - 시간 간격: 작업 시간, 영상 길이, 처리 시간 → Duration
 - 불변 객체: 계산 시 항상 새로운 객체 반환 → 반환값 꼭 저장
 
 ---
 
-## 🧭 ZonedDateTime vs OffsetDateTime vs Instant
+### 📌 ZonedDateTime vs OffsetDateTime vs Instant
 | 클래스            | ZoneId 포함 | ZoneOffset 포함 | DST 적용 가능 | 예시 출력                                      |
 |-------------------|-------------|------------------|----------------|------------------------------------------------|
 | ZonedDateTime     | ✔           | ✔                | ✔              | 2024-02-09T12:02:13+09:00[Asia/Seoul]          |
 | OffsetDateTime    | ✘           | ✔                | ✘              | 2024-02-13T15:03:36+09:00                      |
 | Instant           | ✘           | ✘ (UTC 고정)     | ✘              | 2024-02-13T06:46:07Z                           |
 
-## 🔍 설명 요약
+#### 🔹 설명 요약
 - ZonedDateTime
     - 지역 기반 시간대(ZoneId)를 포함
     - DST(일광 절약 시간제) 자동 반영
@@ -351,7 +351,7 @@ Duration between = Duration.between(start, end); //차이: 3600초
     - 시간대 정보 없음
     - 서버 간 시간 동기화, 타임스탬프 등에 적합
 
-## ✅ 실무 팁
+### 📌 실무 팁
 - 국내 서비스: `LocalDateTime` 또는 `ZonedDateTime` 사용
 - 글로벌 서비스: `ZonedDateTime` 또는 `Instant` 사용
 - 로그/데이터 저장: `Instant` 추천 (UTC 기준으로 일관성 유지)
@@ -360,8 +360,8 @@ Duration between = Duration.between(start, end); //차이: 3600초
 ---
 
 
-## 🧭 날짜와 시간의 핵심 인터페이스 정리
-### 📌 시점(Time Point)
+### 📌 날짜와 시간의 핵심 인터페이스 정리
+#### 🔹 시점(Time Point)
 - 인터페이스: TemporalAccessor (읽기 전용), Temporal (읽기 + 쓰기)
 - 구현 클래스:
 - LocalDate
@@ -370,18 +370,17 @@ Duration between = Duration.between(start, end); //차이: 3600초
 - ZonedDateTime
 - OffsetDateTime
 - Instant
-### 📌 간격(Duration)
+#### 🔹 간격(Duration)
 - 인터페이스: TemporalAmount
 - 구현 클래스:
 - Period (년, 월, 일 단위)
 - Duration (시, 분, 초, 나노초 단위)
 
-
 --- 
 
-## 🧩 시간 단위와 필드
+### 📌 시간 단위와 필드
 
-### ⏱️ TemporalUnit → ChronoUnit
+#### 🔹 TemporalUnit → ChronoUnit
 | 범주       | ChronoUnit       | 설명                     |
 |------------|------------------|--------------------------|
 | 시간 단위   | NANOS            | 나노초                   |
@@ -402,7 +401,7 @@ Duration between = Duration.between(start, end); //차이: 3600초
 |            | FOREVER          | 무한대 시간 단위         |
 
 
-### 📅 TemporalField → ChronoField
+#### 🔹 TemporalField → ChronoField
 | 범주       | ChronoField              | 설명                                 |
 |------------|--------------------------|--------------------------------------|
 | 연도 관련   | YEAR                     | 연도 (예: 2024)                      |
@@ -426,8 +425,8 @@ Duration between = Duration.between(start, end); //차이: 3600초
 |            | OFFSET_SECONDS           | UTC 오프셋 초 단위 표현             |
 
 
-### 🧬 클래스 구조도
-### Temporal 인터페이스
+### 📌 클래스 구조도
+#### 🔹 Temporal 인터페이스
 ```mermaid
 classDiagram
   class TemporalAccessor
@@ -449,7 +448,7 @@ classDiagram
 ```
   
   
-### 시간의 단위
+#### 🔹 시간의 단위
 ```mermaid
 classDiagram
   class TemporalUnit
@@ -462,7 +461,7 @@ classDiagram
 
 ```
 
-### 🧪 주요 메서드 옵션 정리
+### 📌 주요 메서드 옵션 정리
 | 클래스        | 메서드 이름         | 반환 타입 / 설명                          |
 |---------------|---------------------|-------------------------------------------|
 | ChronoUnit    | between(a, b)       | 두 Temporal 객체 사이의 간격 계산         |
