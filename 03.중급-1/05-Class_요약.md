@@ -182,7 +182,7 @@ Math.random() → 0.006347084592260965
 Random 클래스는 다양한 타입의 난수를 생성할 수 있는 클래스입니다.  
 Math.random() 보다 더 정교한 제어가 가능합니다. java.util 패키지에 포함되어 있습니다.
 
-### 🔧 주요 메서드
+### 📌 주요 메서드
 - nextInt() : 전체 범위의 int 난수
 - nextDouble() : 0.0 이상 1.0 미만의 double 난수
 - nextBoolean() : true 또는 false 반환
@@ -190,7 +190,7 @@ Math.random() 보다 더 정교한 제어가 가능합니다. java.util 패키�
 - 예: nextInt(10) → 0 ~ 9
 - nextInt(10) + 1 → 1 ~ 10
 
-## 🌱 씨드(Seed) 개념
+### 📌 씨드(Seed) 개념
 - new Random() : 내부적으로 System.nanoTime() 등을 사용해 매번 다른 난수 생성
 - new Random(int seed) : 동일한 seed 값 사용 시 항상 같은 난수 시퀀스 생성
 - 테스트 코드, 게임 지형 생성 등에 유용
@@ -198,9 +198,9 @@ Math.random() 보다 더 정교한 제어가 가능합니다. java.util 패키�
 Random random = new Random(1);
 System.out.println(random.nextInt()); // 항상 같은 값 출력
 ```
-- 🎮 마인크래프트 같은 게임은 seed 값을 기반으로 동일한 지형을 생성합니다.
+- 마인크래프트 같은 게임은 seed 값을 기반으로 동일한 지형을 생성합니다.
 
-### 예제
+### 📌 예제
 ```java
 public class RandomMain {
     public static void main(String[] args) {
@@ -224,7 +224,7 @@ public class RandomMain {
 }
 ```
 
-## 🧪 예제 출력 예시
+#### 🔹 예제 출력 예시
 ```
 randomInt: -1316070581
 randomDouble: 0.37735342193577215
@@ -235,10 +235,10 @@ randomBoolean: false
 
 ---
 
-# 🧪 문제와 풀이 1: Wrapper 클래스 활용
-## ✅ 문제 1: parseInt()로 문자열 숫자 더하기
-### 목표: 문자열 "10"과 "20"을 정수로 변환하여 합산
-#### 핵심 메서드: Integer.parseInt(String)
+### 📌 문제와 풀이 1: Wrapper 클래스 활용
+#### 🔹 문제 1: parseInt()로 문자열 숫자 더하기
+##### 목표: 문자열 "10"과 "20"을 정수로 변환하여 합산
+##### 핵심 메서드: Integer.parseInt(String)
 ```java
 String str1 = "10";
 String str2 = "20";
@@ -249,9 +249,9 @@ System.out.println("두 수의 합: " + sum); // 출력: 두 수의 합: 30
 ```
 
 
-## ✅ 문제 2: parseDouble()로 배열의 합 구하기
-### 목표: 문자열 배열 {"1.5", "2.5", "3.0"}의 합산
-### 핵심 메서드: Double.parseDouble(String)
+#### 🔹 문제 2: parseDouble()로 배열의 합 구하기
+##### 목표: 문자열 배열 {"1.5", "2.5", "3.0"}의 합산
+##### 핵심 메서드: Double.parseDouble(String)
 ```java
 String[] array = {"1.5", "2.5", "3.0"};
 double sum = 0;
@@ -262,9 +262,9 @@ System.out.println("sum = " + sum); // 출력: sum = 7.0
 ```
 
 
-## ✅ 문제 3: 박싱/언박싱 (수동)
-### 목표: 문자열 → Integer, Integer → int, int → Integer
-#### 주의: 오토 박싱/언박싱 사용 금지
+#### 🔹 문제 3: 박싱/언박싱 (수동)
+##### 목표: 문자열 → Integer, Integer → int, int → Integer
+##### 주의: 오토 박싱/언박싱 사용 금지
 ```java
 String str = "100";
 Integer integer1 = Integer.valueOf(str); // String → Integer
@@ -272,7 +272,7 @@ int intValue = integer1.intValue();      // Integer → int
 Integer integer2 = Integer.valueOf(intValue); // int → Integer
 ```
 
-#### 출력
+##### 출력
 ```
 integer1 = 100
 intValue = 100
@@ -280,8 +280,8 @@ integer2 = 100
 ```
 
 
-## ✅ 문제 4: 오토 박싱/언박싱
-### 목표: 동일한 변환을 오토 박싱/언박싱으로 처리
+#### 🔹 문제 4: 오토 박싱/언박싱
+##### 목표: 동일한 변환을 오토 박싱/언박싱으로 처리
 ```java
 String str = "100";
 Integer integer1 = Integer.valueOf(str); // String → Integer
@@ -289,7 +289,7 @@ int intValue = integer1;                 // 오토 언박싱
 Integer integer2 = intValue;             // 오토 박싱
 ```
 
-#### 출력
+##### 출력
 ```java
 integer1 = 100
 intValue = 100
@@ -298,11 +298,11 @@ integer2 = 100
 
 ---
 
-# 🎲 문제와 풀이 2: 로또 번호 자동 생성기
-## ✅ 문제 설명
+### 📌 문제와 풀이 2: 로또 번호 자동 생성기
+#### 🔹 ✅ 문제 설명
 - 1~45 사이의 숫자 중 중복 없이 6개를 랜덤으로 추출
 - 실행할 때마다 결과가 달라야 함
-### 🔧 핵심 구현
+#### 🔹 핵심 구현
 - Random.nextInt(45) + 1 : 1~45 범위의 난수 생성
 - isUnique() : 중복 검사
 - generate() : 로또 번호 생성
@@ -321,12 +321,12 @@ public int[] generate() {
 }
 ```
 
-#### 🧪 실행 예시
+#### 🔹 실행 예시
 ```
 로또 번호: 11 19 21 35 29 16
 ```
 
-#### 💡 Random 클래스는 내부적으로 seed를 사용하며, seed가 같으면 결과도 동일합니다. 
+- Random 클래스는 내부적으로 seed를 사용하며, seed가 같으면 결과도 동일합니다. 
 
 ---
 
