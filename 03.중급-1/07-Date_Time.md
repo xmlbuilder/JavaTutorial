@@ -486,27 +486,27 @@ ChronoField.DAY_OF_MONTH.getRangeUnit(); // → ChronoUnit.MONTHS
 ```
 ---
 
-# 🕰️ 자바 날짜와 시간 조회 및 조작 정리
-## 📌 1. 날짜와 시간 조회하기  
-### ✅ 조회 방식
+### 📌 자바 날짜와 시간 조회 및 조작 정리
+#### 🔹 1. 날짜와 시간 조회하기  
+##### 🔹 조회 방식
 | 조회 방식           | 인터페이스         | 예시 코드                                |
 |---------------------|--------------------|-------------------------------------------|
 | get(ChronoField)    | TemporalAccessor   | dt.get(ChronoField.YEAR)                  |
 | 편의 메서드         | TemporalAccessor   | dt.getYear(), dt.getMonthValue() 등       |
 
-### 🔍 설명 요약
+##### 🔹 설명 요약
 - get(ChronoField)는 모든 필드 조회 가능하지만 코드가 길어짐
 - getYear(), getMonthValue() 등은 자주 쓰는 필드에 대해 제공되는 편의 메서드
 - TemporalAccessor를 구현한 클래스 (LocalDateTime, ZonedDateTime, 등)에서 사용 가능
 
-### ✅ 조회 예시
+##### 🔹 조회 예시
 ```java
 LocalDateTime dt = LocalDateTime.of(2030, 1, 1, 13, 30, 59);
 dt.get(ChronoField.MINUTE_OF_DAY); // → 810
 dt.get(ChronoField.SECOND_OF_DAY); // → 48659
 ```
 
-### ✅ 편의 메서드 vs 일반 메서드
+##### 🔹 편의 메서드 vs 일반 메서드
 | 항목           | 일반 메서드                        | 편의 메서드           |
 |----------------|-------------------------------------|------------------------|
 | 연도           | get(ChronoField.YEAR)              | getYear()              |
@@ -516,21 +516,21 @@ dt.get(ChronoField.SECOND_OF_DAY); // → 48659
 | 분             | get(ChronoField.MINUTE_OF_HOUR)    | getMinute()            |
 | 초             | get(ChronoField.SECOND_OF_MINUTE)  | getSecond()            |
 
-### 🔍 요약
+##### 🔹 요약
 - 일반 메서드: get(ChronoField.FIELD) 형식으로 모든 필드 조회 가능
 - 편의 메서드: 자주 쓰는 필드에 대해 간단한 메서드 제공 → 가독성 향상
 - 사용 권장: 편의 메서드 우선 사용, 특별한 필드는 ChronoField로 조회
 
 
-## 🔧 2. 날짜와 시간 조작하기
-### ✅ 조작 방식
+#### 🔹 2. 날짜와 시간 조작하기
+##### 🔹 조작 방식
 | 조작 메서드               | 적용 인터페이스 / 클래스 | 예시 코드                          |
 |---------------------------|---------------------------|-------------------------------------|
 | plus(long, ChronoUnit)    | Temporal                  | dt.plus(10, ChronoUnit.YEARS)       |
 | 편의 메서드               | Temporal                  | dt.plusYears(10)                    |
 | plus(TemporalAmount)      | Period / Duration         | dt.plus(Period.ofYears(10))         |
 
-### 🔍 설명 요약
+##### 🔹 설명 요약
 - plus(long, ChronoUnit)
     - 원하는 시간 단위(년, 월, 일 등)를 지정하여 더함
 - ChronoUnit 사용
@@ -540,9 +540,9 @@ dt.get(ChronoField.SECOND_OF_DAY); // → 48659
     - plus(TemporalAmount)
     - Period 또는 Duration 객체를 사용해 시간 간격을 더함
     - 날짜 간격은 Period, 시간 간격은 Duration
-모든 시간 객체는 **불변(immutable)** 이므로, 조작 후에는 반드시 반환값을 받아야 합니다.
+- 모든 시간 객체는 **불변(immutable)** 이므로, 조작 후에는 반드시 반환값을 받아야 합니다.
 
-### ✅ 조작 예시
+##### 🔹 조작 예시
 ```java
 LocalDateTime dt = LocalDateTime.of(2018, 1, 1, 13, 30, 59);
 dt.plus(10, ChronoUnit.YEARS);         // → 2028-01-01T13:30:59
@@ -550,27 +550,27 @@ dt.plusYears(10);                      // → 2028-01-01T13:30:59
 dt.plus(Period.ofYears(10));           // → 2028-01-01T13:30:59
 ```
 
-### 🚫 3. 지원하지 않는 필드 조회 시 예외
-#### ✅ 문제 상황
+#### 🔹 3. 지원하지 않는 필드 조회 시 예외
+##### 🔹 문제 상황
 ```java
 LocalDate now = LocalDate.now();
 int minute = now.get(ChronoField.SECOND_OF_MINUTE); // 예외 발생
 ```
 - LocalDate는 시간 정보를 포함하지 않기 때문에 SECOND_OF_MINUTE 조회 시 예외 발생
-#### ✅ 안전한 조회 방법
+##### 🔹 안전한 조회 방법
 ```java
 if (now.isSupported(ChronoField.SECOND_OF_MINUTE)) {
     int second = now.get(ChronoField.SECOND_OF_MINUTE);
 }
 ```
 
-### ✅ 지원 여부 확인 메서드
+### 📌 지원 여부 확인 메서드
 | 인터페이스        | 메서드 이름                   | 설명                                      |
 |-------------------|-------------------------------|-------------------------------------------|
 | TemporalAccessor  | isSupported(TemporalField)    | 특정 필드(예: 초, 분 등)를 지원하는지 확인 |
 | Temporal          | isSupported(TemporalUnit)     | 특정 단위(예: 년, 시간 등)를 지원하는지 확인 |
 
-## 🧠 핵심 요약
+### 📌 핵심 요약
 - 조회: TemporalAccessor.get(ChronoField) 또는 편의 메서드 사용
 - 조작: Temporal.plus() 또는 Period, Duration 사용
 - 불변성: 모든 시간 객체는 불변 → 조작 시 새로운 객체 반환
@@ -578,15 +578,15 @@ if (now.isSupported(ChronoField.SECOND_OF_MINUTE)) {
 
 ---
 
-## 🛠️ 날짜와 시간 조회 및 조작하기 ②
-### 📌 1. with() 메서드를 통한 날짜/시간 조작
-### ✅ 기본 조작 방식
+### 📌 날짜와 시간 조회 및 조작하기 ②
+##### 🔹 1. with() 메서드를 통한 날짜/시간 조작
+###### 🔹 기본 조작 방식
 | 조작 방식               | 적용 대상        | 예시 코드                          |
 |-------------------------|------------------|-------------------------------------|
 | with(ChronoField, value)| Temporal          | dt.with(ChronoField.YEAR, 2020)     |
 | 편의 메서드             | Temporal          | dt.withYear(2020)                   |
 
-### 🔍 설명 요약
+###### 🔹 설명 요약
 - with(ChronoField, value)
     - 특정 필드의 값을 직접 지정하여 변경
     - 모든 필드에 대해 사용 가능
@@ -595,21 +595,21 @@ if (now.isSupported(ChronoField.SECOND_OF_MINUTE)) {
     - withYear(), withMonth(), withDayOfMonth() 등
 - 모든 시간 객체는 불변(immutable) → 변경 시 새로운 객체 반환
 
-### 📌 2. TemporalAdjusters를 통한 날짜 조정
-### ✅ 복잡한 날짜 계산
+##### 🔹 2. TemporalAdjusters를 통한 날짜 조정
+###### 🔹 복잡한 날짜 계산
 | 메서드 이름               | 설명                                | 예시 코드                                                  |
 |---------------------------|-------------------------------------|-------------------------------------------------------------|
 | next(DayOfWeek)           | 다음 해당 요일로 이동               | dt.with(TemporalAdjusters.next(DayOfWeek.FRIDAY))           |
 | lastInMonth(DayOfWeek)    | 해당 월의 마지막 해당 요일로 이동  | dt.with(TemporalAdjusters.lastInMonth(DayOfWeek.SUNDAY))    |
 
-### 🔍 설명 요약
+###### 🔹 설명 요약
 - TemporalAdjusters.next(DayOfWeek)
     - 현재 날짜 이후의 가장 가까운 해당 요일로 이동
 - TemporalAdjusters.lastInMonth(DayOfWeek)
     - 현재 월에서 마지막 해당 요일로 이동
-이 방식은 단순한 날짜 변경을 넘어서 조건 기반 날짜 계산을 가능하게 해줍니다.
+- 이 방식은 단순한 날짜 변경을 넘어서 조건 기반 날짜 계산을 가능하게 해줍니다.
 
-### ✅ 주요 기능 목록
+##### 🔹 주요 기능 목록
 | 메서드 이름               | 설명                                      |
 |---------------------------|-------------------------------------------|
 | firstDayOfMonth()         | 해당 월의 첫째 날로 조정                  |
@@ -619,7 +619,7 @@ if (now.isSupported(ChronoField.SECOND_OF_MINUTE)) {
 | nextOrSame(DayOfWeek)     | 다음 해당 요일 또는 현재 날짜로 조정     |
 | previous(DayOfWeek)       | 이전 해당 요일로 조정                     |
 
-### 🔍 사용 예시
+##### 🔹 사용 예시
 ```java
 LocalDateTime dt = LocalDateTime.of(2024, 12, 31, 13, 30, 59);
 // 다음 금요일 또는 오늘이 금요일이면 오늘
@@ -630,7 +630,7 @@ dt.with(TemporalAdjusters.firstDayOfMonth());
 dt.with(TemporalAdjusters.lastDayOfNextYear());
 ```
 
-### 📅 DayOfWeek 열거형
+##### 🔹 DayOfWeek 열거형
 | 요일 이름     | 숫자 값 | 설명             |
 |---------------|---------|------------------|
 | MONDAY        | 1       | 월요일           |
@@ -644,20 +644,21 @@ dt.with(TemporalAdjusters.lastDayOfNextYear());
 ---
 
 
-## 🧾 날짜와 시간 포맷팅 & 파싱
-### ✅ 포맷팅: 날짜/시간 → 문자열
+### 📌 날짜와 시간 포맷팅 & 파싱
+#### 🔹 포맷팅: 날짜/시간 → 문자열
 ```java
 LocalDate date = LocalDate.of(2024, 12, 31);
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 String formatted = date.format(formatter); // → "2024년 12월 31일"
 ```
 
-### ✅ 파싱: 문자열 → 날짜/시간
+#### 🔹 파싱: 문자열 → 날짜/시간
 ```java
 String input = "2030년 01월 01일";
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
 LocalDate parsed = LocalDate.parse(input, formatter); // → 2030-01-01
 ```
-### ✅ 날짜 + 시간 포맷팅 & 파싱
+#### 🔹 날짜 + 시간 포맷팅 & 파싱
 ```java
 LocalDateTime now = LocalDateTime.of(2024, 12, 31, 13, 30, 59);
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -667,7 +668,7 @@ String input = "2030-01-01 11:30:00";
 LocalDateTime parsed = LocalDateTime.parse(input, formatter); // → 2030-01-01T11:30
 ```
 
-## 🧩 DateTimeFormatter 패턴 요약
+#### 🔹 DateTimeFormatter 패턴 요약
 | 패턴 기호 | 의미             | 표현 방식         | 예시                     |
 |-----------|------------------|--------------------|--------------------------|
 | yyyy      | 연도             | 숫자               | 2025                     |
@@ -681,14 +682,14 @@ LocalDateTime parsed = LocalDateTime.parse(input, formatter); // → 2030-01-01T
 | z         | 시간대 이름      | 텍스트             | PST, GMT                 |
 | Z         | 시간대 오프셋    | 숫자               | +0900, -0800             |
 
-## 🔍 사용 예시
+#### 🔹 사용 예시
 ```java
 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 String formatted = LocalDateTime.now().format(formatter); // → "2025-10-11 11:22:00"
 ```
 이 패턴들은 날짜와 시간을 원하는 형식으로 포맷팅하거나 파싱할 때 사용됩니다.
 
-## ✅ 핵심 요약
+#### 🔹 핵심 요약
 - with() → 단일 필드 변경
 - TemporalAdjusters → 복잡한 날짜 계산
 - DateTimeFormatter → 포맷팅/파싱에 사용
@@ -696,13 +697,13 @@ String formatted = LocalDateTime.now().format(formatter); // → "2025-10-11 11:
 
 ---
 
-# 🧠 자바 날짜와 시간 문제 풀이 요약
-## ✅ 문제1 – 날짜 더하기
+### 📌 자바 날짜와 시간 문제 풀이 요약
+#### 🔹 문제1 – 날짜 더하기
 | 기준 시각               | 더한 기간               | 결과 시각               |
 |------------------------|-------------------------|-------------------------|
 | 2024-01-01T00:00       | 1년 2개월 3일 4시간     | 2025-03-04T04:00        |
 
-### 🔍 사용된 코드 핵심
+##### 🔹 사용된 코드 핵심
 ```java
 LocalDateTime dateTime = LocalDateTime.of(2024, 1, 1, 0, 0, 0);
 LocalDateTime futureDateTime =
@@ -711,12 +712,12 @@ LocalDateTime futureDateTime =
 - plusYears(), plusMonths(), plusDays(), plusHours() → 각각의 시간 단위를 더함
 - LocalDateTime은 불변 객체이므로 반드시 반환값을 받아야 함
 
-## ✅ 문제2 – 날짜 간격 반복 출력
+#### 🔹 문제2 – 날짜 간격 반복 출력
 | 시작 날짜     | 간격     | 반복 횟수 | 출력 날짜 예시                      |
 |---------------|----------|-----------|-------------------------------------|
 | 2024-01-01    | 2주      | 5회       | 1/1, 1/15, 1/29, 2/12, 2/26         |
 
-### 🔍 사용된 코드 핵심
+##### 🔹 사용된 코드 핵심
 ```java
 LocalDate startDate = LocalDate.of(2024, 1, 1);
 for (int i = 0; i < 5; i++) {
@@ -729,11 +730,12 @@ for (int i = 0; i < 5; i++) {
 - LocalDate는 날짜만 다루는 클래스 → 시간 정보는 없음
 
 
-## ✅ 문제3 – 디데이 계산
+#### 🔹 문제3 – 디데이 계산
 | 시작 날짜     | 목표 날짜     | 남은 기간           | 디데이         |
 |---------------|----------------|----------------------|----------------|
 | 2024-01-01    | 2024-11-21     | 0년 10개월 20일      | 325일 남음     |
-### 🔍 사용된 코드 핵심
+
+##### 🔹 사용된 코드 핵심
 ```java
 LocalDate startDate = LocalDate.of(2024, 1, 1);
 LocalDate endDate = LocalDate.of(2024, 11, 21);
@@ -752,27 +754,27 @@ System.out.println("디데이: " + daysBetween + "일 남음");
 
 
 
-## ✅ 문제4 – 월의 시작/마지막 요일
+#### 🔹 문제4 – 월의 시작/마지막 요일
 | 입력 연도 | 입력 월 | 시작 요일 | 마지막 요일 |
 |-----------|---------|------------|--------------|
 | 2024      | 1       | MONDAY     | WEDNESDAY    |
 
-### 🔍 사용된 코드 핵심
+##### 🔹 사용된 코드 핵심
 ```java
 LocalDate date = LocalDate.of(year, month, 1);
 DayOfWeek firstDayOfWeek = date.getDayOfWeek();
 DayOfWeek lastDayOfWeek = date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfWeek();
 ```
 - getDayOfWeek() → 해당 날짜의 요일 반환
-- TemporalAdjusters.lastDayOfMonth() → 해당 월의 마지막 날 계산
+- `TemporalAdjusters.lastDayOfMonth()` → 해당 월의 마지막 날 계산
 
-## ✅ 문제5 – 국제 회의 시간 변환
+#### 🔹 문제5 – 국제 회의 시간 변환
 | 도시     | 시간대 ID           | 변환된 회의 시간                     |
 |----------|---------------------|--------------------------------------|
 | 서울     | Asia/Seoul          | 2024-01-01T09:00+09:00[Asia/Seoul]   |
 | 런던     | Europe/London       | 2024-01-01T00:00Z[Europe/London]     |
 | 뉴욕     | America/New_York    | 2023-12-31T19:00-05:00[America/New_York] |
-### 🔍 사용된 코드 핵심
+##### 🔹 사용된 코드 핵심
 ```java
 ZonedDateTime seoulTime = ZonedDateTime.of(
     LocalDate.of(2024, 1, 1),
@@ -785,13 +787,13 @@ ZonedDateTime nyTime = seoulTime.withZoneSameInstant(ZoneId.of("America/New_York
 - ZonedDateTime.of(...) → 특정 시간대의 날짜/시간 생성
 - withZoneSameInstant(...) → UTC 기준으로 다른 시간대로 변환
 
-## ✅ 문제6 – 달력 출력
+#### 🔹 문제6 – 달력 출력
 | 입력 연도 | 입력 월 | 출력 형식         |
 |-----------|----------|-------------------|
 | 2024      | 1        | 월간 달력 (요일별 날짜 나열) |
 | 2025      | 1        | 월간 달력 (요일별 날짜 나열) |
 
-### 🔍 사용된 코드 핵심
+##### 🔹 사용된 코드 핵심
 ```java
 LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
 LocalDate firstDayOfNextMonth = firstDayOfMonth.plusMonths(1);
@@ -817,7 +819,7 @@ while (dayIterator.isBefore(firstDayOfNextMonth)) {
 - plusDays(1) → 날짜 반복
 - System.out.printf() → 날짜 출력 형식 정렬
 
-### 🔍 출력 예시
+##### 🔹 출력 예시
 ```
 Su Mo Tu We Th Fr Sa
 1  2  3  4  5  6
@@ -828,50 +830,51 @@ Su Mo Tu We Th Fr Sa
 ---
 
 
-# 📚 주요 클래스별 메서드 정리
-## 🕓 LocalDateTime  
-### 생성
+### 📌 주요 클래스별 메서드 정리
+#### 🔹 LocalDateTime  
+##### 생성
 | 메서드 이름 | 설명                                      | 예시 코드                                      |
 |-------------|-------------------------------------------|------------------------------------------------|
 | now()       | 현재 시스템의 날짜와 시간 생성             | `LocalDateTime now = LocalDateTime.now();`     |
 | of(...)     | 지정한 날짜와 시간으로 객체 생성           | `LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 9, 0);` |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - now() → 현재 시간 기준으로 LocalDateTime 객체 생성
 - of(...) → 연, 월, 일, 시, 분, 초, 나노초까지 지정 가능
+```
 LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 9, 0, 0, 0);
-
-### 변환
+```
+##### 변환
 | 메서드 이름           | 설명                                      | 예시 코드                                      |
 |------------------------|-------------------------------------------|------------------------------------------------|
 | toLocalDate()          | 날짜 부분만 추출하여 `LocalDate` 반환     | `dt.toLocalDate()`                             |
 | toLocalTime()          | 시간 부분만 추출하여 `LocalTime` 반환     | `dt.toLocalTime()`                             |
 | toEpochSecond(offset)  | 지정된 오프셋 기준으로 에포크 초 반환     | `dt.toEpochSecond(ZoneOffset.of("+09:00"))`    |
 
-#### 🔍 추가 설명
+##### 🔍 추가 설명
 - toLocalDate() → 날짜만 필요할 때 유용
 - toLocalTime() → 시간만 필요할 때 유용
 - toEpochSecond() → 1970-01-01T00:00:00Z 기준으로 초 단위 시간 계산
 
-### 조회
+##### 조회
 
 | 메서드 그룹                            | 설명                                  | 예시 코드                                |
 |----------------------------------------|---------------------------------------|-------------------------------------------|
 | getYear(), getMonth(), getDayOfMonth() | 날짜 정보 조회                        | `dt.getYear()`, `dt.getMonth()`, `dt.getDayOfMonth()` |
 | getHour(), getMinute(), getSecond()    | 시간 정보 조회                        | `dt.getHour()`, `dt.getMinute()`, `dt.getSecond()`     |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - getYear() → 연도 반환
 - getMonth() → Month 열거형 반환 (JANUARY, FEBRUARY 등)
 - getDayOfMonth() → 해당 월의 날짜 반환
 - getHour() / getMinute() / getSecond() → 시간 구성 요소 반환
 
-### 비교
+##### 비교
 | 메서드 그룹                        | 설명                                  | 예시 코드                                      |
 |------------------------------------|---------------------------------------|------------------------------------------------|
 | isBefore(), isAfter(), isEqual()   | 다른 시간과의 선후/동일 여부 비교     | `dt.isBefore(other)`, `dt.isAfter(other)`, `dt.isEqual(other)` |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - isBefore(other) → 현재 객체가 인자로 받은 시간보다 이전인지 확인
 - isAfter(other) → 현재 객체가 인자로 받은 시간보다 이후인지 확인
 - isEqual(other) → 두 시간 객체가 정확히 같은지 확인
@@ -885,28 +888,28 @@ System.out.println(dt1.isEqual(dt2));  // false
 
 ```
 
-### 수정
+##### 수정
 | 메서드 이름 및 그룹             | 설명                                      | 예시 코드                                      |
 |--------------------------------|-------------------------------------------|------------------------------------------------|
 | with(...)                      | 지정된 필드 또는 조정기로 값 변경         | `dt.with(ChronoField.DAY_OF_MONTH, 15)`        |
 | withYear(), withMonth()        | 연도 또는 월을 직접 지정하여 변경         | `dt.withYear(2025)`, `dt.withMonth(12)`        |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - with(...) → TemporalField 또는 TemporalAdjuster를 사용하여 유연하게 수정 가능
 - withYear(int) / withMonth(int) → 편의 메서드로 빠르게 연도/월 변경
 ```java
 LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 9, 0);
-LocalDateTime updated = dt.withMonth(
+LocalDateTime updated = dt.withMonth(2);
 ```
 
 
-### 추가/감소
+##### 추가/감소
 | 메서드 이름 및 그룹             | 설명                                      | 예시 코드                                      |
 |--------------------------------|-------------------------------------------|------------------------------------------------|
 | plus(...), minus(...)          | 지정된 시간 단위로 더하거나 빼기          | `dt.plus(3, ChronoUnit.DAYS)`, `dt.minus(2, ChronoUnit.HOURS)` |
 | plusYears(), plusDays()        | 연도 또는 일수를 더하기                   | `dt.plusYears(1)`, `dt.plusDays(10)`           |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - plus() / minus() → TemporalUnit을 사용하여 유연하게 시간 조정
 - plusYears(), plusDays() 등 → 편의 메서드로 간결하게 사용 가능
 ```java
@@ -914,26 +917,28 @@ LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 9, 0);
 LocalDateTime updated = dt.plusMonths(2).minusHours(5); // → 2024-03-01T04:00
 ```
 
-### 포맷팅
+##### 포맷팅
 | 메서드 이름                  | 설명                                  | 예시 코드                                      |
 |-----------------------------|---------------------------------------|------------------------------------------------|
 | format(DateTimeFormatter)   | 지정한 포맷 패턴으로 문자열 변환      | `dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))` |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - DateTimeFormatter.ofPattern("패턴") → 원하는 형식 지정
 - format(...) → LocalDateTime을 문자열로 변환
 ```java
 LocalDateTime dt = LocalDateTime.of(2024, 1, 1, 9, 0);
-String fo
+String format formatter = dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+String formatted = LocalDateTime.now().format(formatter);
 ```
 
-## 🌍 ZonedDateTime  
-### 생성
+#### 🔹 ZonedDateTime  
+##### 생성
 | 메서드 이름           | 설명                                      | 예시 코드                                      |
 |------------------------|-------------------------------------------|------------------------------------------------|
 | now() / now(zone)      | 현재 시간대 또는 지정된 시간대의 현재 시각 | `ZonedDateTime.now()` / `ZonedDateTime.now(ZoneId.of("Asia/Seoul"))` |
 | of(...)                | 날짜, 시간, 시간대를 지정하여 생성         | `ZonedDateTime.of(LocalDate.of(2024,1,1), LocalTime.of(9,0), ZoneId.of("Asia/Seoul"))` |
-#### 🔍 추가 설명
+
+##### 추가 설명
 - now() → 시스템 기본 시간대 기준 현재 시각
 - now(ZoneId) → 지정된 시간대 기준 현재 시각
 - of(...) → 날짜, 시간, 시간대를 직접 지정하여 생성
@@ -944,13 +949,13 @@ ZonedDateTime zdt = ZonedDateTime.of(
 );
 ```
 
-### 타임존 관리
+##### 타임존 관리
 | 메서드 이름              | 설명                                                                 | 예시 코드                                                   |
 |--------------------------|----------------------------------------------------------------------|--------------------------------------------------------------|
 | withZoneSameInstant()    | 절대 시간(UTC 기준)을 유지하며 시간대를 변경                         | `zdt.withZoneSameInstant(ZoneId.of("Europe/London"))`        |
 | withZoneSameLocal()      | 로컬 날짜와 시간을 유지하며 시간대만 변경 (실제 시각은 달라질 수 있음) | `zdt.withZoneSameLocal(ZoneId.of("America/New_York"))`       |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - withZoneSameInstant() → 동일한 순간을 다른 시간대 기준으로 표현 (예: 서울 9시 → 런던 0시)
 - withZoneSameLocal() → 동일한 로컬 시각을 다른 시간대에 적용 (예: 서울 9시 → 뉴욕 9시)
 ```java
@@ -959,14 +964,14 @@ ZonedDateTime londonTime = seoulTime.withZoneSameInstant(ZoneId.of("Europe/Londo
 ZonedDateTime nyLocalTime = seoulTime.withZoneSameLocal(ZoneId.of("America/New_York"));
 ```
 
-### 조회/변환
+##### 조회/변환
 | 메서드 이름 그룹                          | 설명                                      | 예시 코드                                      |
 |------------------------------------------|-------------------------------------------|------------------------------------------------|
 | getOffset(), getZone()                   | 오프셋 및 시간대 정보 조회                | `zdt.getOffset()`, `zdt.getZone()`             |
 | toLocalDateTime(), toInstant()           | 로컬 시간 또는 Instant 객체로 변환        | `zdt.toLocalDateTime()`, `zdt.toInstant()`     |
 | toEpochSecond()                          | UTC 기준으로 초 단위 시간 반환            | `zdt.toEpochSecond()`                          |
 
-#### 🔍 추가 설명
+##### 추가 설명
 - getOffset() → +09:00, -05:00 등 시간대 오프셋 반환
 - getZone() → Asia/Seoul, Europe/London 등 시간대 ID 반환
 - toLocalDateTime() → 시간대 정보 제거하고 LocalDateTime으로 변환
@@ -979,13 +984,14 @@ System.out.println(zdt.toInstant());         // 2025-10-11T02:39:00Z
 System.out.println(zdt.toEpochSecond());     // 1760156340
 ```
 
-## ⏱️ Instant  
-### 생성
+#### 🔹 Instant  
+##### 생성
 | 메서드 이름                          | 설명                                      | 예시 코드                                      |
 |-------------------------------------|-------------------------------------------|------------------------------------------------|
 | now()                               | 현재 UTC 기준의 시각 생성                 | `Instant now = Instant.now();`                 |
 | ofEpochSecond(), ofEpochMilli()     | 에포크 기준으로 초 또는 밀리초로 생성     | `Instant.ofEpochSecond(1760156340)`<br>`Instant.ofEpochMilli(1760156340000L)` |
-#### 🔍 추가 설명
+
+##### 추가 설명
 - now() → 현재 시각을 UTC 기준으로 반환
 - ofEpochSecond(long) → 1970-01-01T00:00:00Z 기준으로 초 단위 시각 생성
 - ofEpochMilli(long) → 밀리초 단위로 Instant 생성
@@ -993,12 +999,13 @@ System.out.println(zdt.toEpochSecond());     // 1760156340
 Instant instant1 = Instant.ofEpochSecond(0);       // → 1970-01-01T00:00:00Z
 Instant instant2 = Instant.ofEpochMilli(1000);     // → 1970-01-01T00:00:01Z
 ```
-### 변환
+##### 변환
 | 메서드 이름         | 설명                                      | 예시 코드                                                   |
 |----------------------|-------------------------------------------|--------------------------------------------------------------|
 | atOffset(offset)     | 지정된 오프셋을 적용하여 `OffsetDateTime` 반환 | `instant.atOffset(ZoneOffset.of("+09:00"))`                  |
 | atZone(zone)         | 지정된 시간대를 적용하여 `ZonedDateTime` 반환  | `instant.atZone(ZoneId.of("Asia/Seoul"))`                    |
-#### 🔍 추가 설명
+
+##### 추가 설명
 - atOffset(ZoneOffset) → 고정된 오프셋 기반 시간 표현
 - atZone(ZoneId) → 시간대 기반으로 변환하여 지역적 시간 표현 가능
 ```java
@@ -1006,17 +1013,19 @@ Instant instant = Instant.now();
 OffsetDateTime offsetTime = instant.atOffset(ZoneOffset.of("+09:00"));
 ZonedDateTime zonedTime = instant.atZone(ZoneId.of("Asia/Seoul"));
 ```
-이 메서드들은 UTC 기준의 Instant를 로컬 시간 표현으로 변환할 때 매우 유용합니다.
+- 이 메서드들은 UTC 기준의 Instant를 로컬 시간 표현으로 변환할 때 매우 유용합니다.
 
 
-### 조회
+##### 조회
 | 메서드 이름         | 설명                                      | 예시 코드                        |
 |----------------------|-------------------------------------------|-----------------------------------|
 | getEpochSecond()     | UTC 기준으로 초 단위 시간 반환            | `instant.getEpochSecond()`        |
 | getNano()            | 현재 초의 나노초 부분 반환                | `instant.getNano()`               |
-#### 🔍 추가 설명
+
+##### 추가 설명
 - getEpochSecond() → 1970-01-01T00:00:00Z 기준으로 경과된 초를 반환
 - getNano() → 현재 초의 나노초 부분 (0~999,999,999) 반환
+
 ```java
 Instant instant = Instant.now();
 System.out.println("초 단위: " + instant.getEpochSecond());
