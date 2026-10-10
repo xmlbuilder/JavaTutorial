@@ -183,8 +183,8 @@ public <Z> Z printAndReturn(Z z) { ... }
 
 ---
 
-# 타입 매개변수 제한 흐름 요약
-## 1️⃣ DogHospital / CatHospital (타입 고정)
+### 📌 타입 매개변수 제한 흐름 요약
+### 1️⃣ DogHospital / CatHospital (타입 고정)
 - 구조: 각각 Dog, Cat 타입에 고정된 병원 클래스
 - 장점: 타입 안전성 O (다른 동물 넣으면 컴파일 오류)
 - 단점: 코드 중복 심함, 재사용성 X
@@ -194,8 +194,7 @@ dogHospital.set(new Dog(...)); // ✅
 dogHospital.set(new Cat(...)); // ❌ 컴파일 오류
 ```
 
-
-## 2️⃣ AnimalHospitalV1 (다형성 기반)
+### 2️⃣ AnimalHospitalV1 (다형성 기반)
 - 구조: Animal 타입으로 통합
 - 장점: 코드 재사용 O
 - 단점: 타입 안전성 X (개 병원에 고양이 넣어도 컴파일 오류 없음)
@@ -206,7 +205,7 @@ Dog dog = (Dog) dogHospital.getBigger(...); // ⚠️ 다운캐스팅 필요
 ```
 
 
-## 3️⃣ AnimalHospitalV2<T> (제네릭 도입)
+### 3️⃣ AnimalHospitalV2<T> (제네릭 도입)
 - 구조: 제네릭 <T> 사용
 - 장점: 코드 재사용 O
 - 단점: 타입 안전성 X, 기능 제한 O
@@ -225,8 +224,8 @@ AnimalHospitalV2<Integer> intHospital = new AnimalHospitalV2<>(); // ❌ 논리 
 
 
 
-## ✅ 해결 방향: 타입 매개변수 제한
-다음 단계에서는 제네릭에 타입 제한을 걸어야 합니다:
+### 📌 해결 방향: 타입 매개변수 제한
+- 다음 단계에서는 제네릭에 타입 제한을 걸어야 합니다:
 ```java
 public class AnimalHospitalV3<T extends Animal> { ... }
 ```
@@ -236,8 +235,8 @@ public class AnimalHospitalV3<T extends Animal> { ... }
 
 
 
-## 🧠 타입 매개변수 제한 요약: AnimalHospitalV3
-### 📌 핵심 문법
+### 📌 타입 매개변수 제한 요약: AnimalHospitalV3
+#### 🔹 핵심 문법
 ```java
 public class AnimalHospitalV3<T extends Animal> { ... }
 ```
@@ -255,7 +254,7 @@ public class AnimalHospitalV3<T extends Animal> { ... }
 | `Integer` / `Object`         | ❌ 타입 제한으로 컴파일 오류 발생 → 논리 오류 사전 차단               |
 
 
-## 🧪 실행 예시
+#### 🔹 실행 예시
 ```java
 AnimalHospitalV3<Dog> dogHospital = new AnimalHospitalV3<>();
 dogHospital.set(new Dog("멍멍이1", 100));
@@ -266,7 +265,7 @@ Dog biggerDog = dogHospital.getBigger(new Dog("멍멍이2", 200));
 - Dog 타입만 받도록 제한되어 있어 안전하게 작동
 - getBigger()는 Dog 타입을 반환하므로 캐스팅 필요 없음
 
-## ❗ 기존 문제와 해결
+#### 🔹 기존 문제와 해결
 | 문제 유형             | 이전 방식 (제한 없음) | 개선 방식 (`T extends Animal`) | 설명                                               |
 |----------------------|------------------------|-------------------------------|----------------------------------------------------|
 | 타입 안전성          | T                      | T extends Animal              | `T`는 아무 타입 가능 → `Animal` 자식만 허용       |
@@ -274,7 +273,7 @@ Dog biggerDog = dogHospital.getBigger(new Dog("멍멍이2", 200));
 | 타입 인자 제한       | Integer, Object 가능   | Animal만 가능                 | 무관한 타입 차단 → 논리 오류 사전 방지            |
 
 
-## 🧾 결론
+#### 🔹 결론
 제네릭에 **타입 매개변수 상한 (extends)** 을 지정함으로써:
 - ✅ 타입 안전성 확보
 - ✅ 코드 재사용성 향상
