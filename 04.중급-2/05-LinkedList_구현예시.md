@@ -36,7 +36,7 @@ public class Node {
 ```
 
 
-### 🧪 NodeMain1: 노드 생성 및 연결
+### 📌 NodeMain1: 노드 생성 및 연결
 ```java
 Node first = new Node("A");
 first.next = new Node("B");
@@ -49,7 +49,7 @@ while (x != null) {
 }
 ```
 
-### 🖨️ 출력 결과
+#### 🔹 출력 결과
 ```
 A
 B
@@ -57,7 +57,7 @@ C
 ```
 
 
-## 🧠 연결 구조 시각화
+### 📌 연결 구조 시각화
 ```mermaid
 graph TD
     A["Node A - item A"] --> B["Node B - item B"]
@@ -66,15 +66,15 @@ graph TD
 ```
 
 
-## 🧪 toString()으로 연결 구조 출력
+#### 🔹 toString()으로 연결 구조 출력
 ```java
 System.out.println(first); // [A->B->C]
 ```
 
 ---
 
-## 🧪 기능 확장
-### 기능 목록
+### 📌 기능 확장
+#### 🔹 기능 목록
 - 모든 노드 탐색
 - 마지막 노드 조회
 - 특정 인덱스 노드 조회
@@ -118,7 +118,7 @@ private static void add(Node node, String param) {
 ```
 
 
-## 🧠 전체 연결 구조 시각화
+### 📌 전체 연결 구조 시각화
 ```mermaid
 graph TD
     A[Node A] --> B[Node B]
@@ -130,7 +130,7 @@ graph TD
 ```
 
 
-## 📌 핵심 요약: 사용자 정의 Linked List 기능 정리
+### 📌 핵심 요약: 사용자 정의 Linked List 기능 정리
 
 | 기능             | 설명 또는 출력 예시           |
 |------------------|-------------------------------|
@@ -142,12 +142,12 @@ graph TD
 | `add()`          | 마지막 노드 뒤에 새 노드 연결  |
 
 
-## 🧠 연결 리스트란?
+### 📌 연결 리스트란?
 - 리스트(List): 순서가 있고 중복을 허용하는 자료구조
 - 연결 리스트(LinkedList): 배열 대신 노드와 참조를 통해 데이터를 연결하는 방식
 - 장점: 배열 리스트의 단점(공간 낭비, 중간 삽입/삭제 성능 저하)을 개선
 
-### MyLinkedListV1 클래스
+#### 🔹 MyLinkedListV1 클래스
 ```java
 
 public class MyLinkedListV1 {
@@ -218,7 +218,7 @@ public class MyLinkedListV1 {
 ```
 
 
-### 🧪 주요 기능 설명
+#### 🔹 주요 기능 설명
 
 | 메서드                  | 기능 설명                                           | 반환값 예시 또는 동작 | 시간 복잡도 |
 |--------------------------|----------------------------------------------------|------------------------|--------------|
@@ -230,7 +230,7 @@ public class MyLinkedListV1 {
 
 
 
-### 📈 실행 예시
+#### 🔹 실행 예시
 ```java
 list.add("a"); // [a]
 list.add("b"); // [a->b]
@@ -241,7 +241,7 @@ list.add("e"); // [a->b->z->d->e]
 list.add("f"); // [a->b->z->d->e->f]
 ```
 
-### 출력 결과
+#### 🔹 출력 결과
 ```
 
 ==데이터 추가==
@@ -279,48 +279,48 @@ MyLinkedListV1{first=[a->b->z->d->e->f], size=6}
 | 사용 용도                    | 읽기/검색 중심 작업에 적합            | 삽입/삭제 중심 작업에 적합               |
 
 
-## 🧠 정리
+### 📌 정리
 - 연결 리스트는 노드 기반의 동적 구조로, 배열의 고정 크기 문제를 해결
 - 각 노드는 item과 next를 가지며, next를 통해 다음 노드와 연결됨
 - 직접 구현한 MyLinkedListV1은 add, get, set, indexOf 등 기본 기능을 제공
 - 성능은 배열 리스트보다 일부 연산에서 느릴 수 있지만, 삽입/삭제 유연성이 뛰어남
 
 
-## 연결 리스트에서의 인덱스란?
+### 📌 연결 리스트에서의 인덱스란?
 - 연결 리스트는 배열처럼 실제 인덱스가 존재하지 않음
 - 노드의 연결 순서를 기준으로 인덱스를 가정함
 - 예: 첫 번째 노드 → index 0, 두 번째 노드 → index 1 …
 
-## ✚ 데이터 추가 기능: add(int index, Object e)
-### 1️⃣ 첫 번째 위치에 추가 (index == 0)
+### 📌 데이터 추가 기능: add(int index, Object e)
+#### 1️⃣ 첫 번째 위치에 추가 (index == 0)
 - 기존 리스트: [a->b->c]
 - 추가 후: [d->a->b->c]
-#### 처리 순서
+##### 처리 순서
 - 신규 노드 생성 (newNode)
 - newNode.next = first
 - first = newNode
-#### 시간 복잡도
+##### 시간 복잡도
 - O(1) → 매우 빠름 (참조만 변경)
 
-### 2️⃣ 중간 위치에 추가 (index > 0)
+#### 2️⃣ 중간 위치에 추가 (index > 0)
 - 기존 리스트: [a->b->c]
 - 추가 후 (index 1): [a->e->b->c]
-#### 처리 순서
+##### 처리 순서
 - prev = getNode(index - 1)
 - newNode.next = prev.next
 - prev.next = newNode
-#### 시간 복잡도
+##### 시간 복잡도
 - O(n) → 위치 탐색 O(n) + 연결 O(1)
 
-## ❌ 데이터 삭제 기능: remove(int index)
-### 1️⃣ 첫 번째 위치 삭제 (index == 0)
+### 📌 데이터 삭제 기능: remove(int index)
+#### 1️⃣ 첫 번째 위치 삭제 (index == 0)
 - 기존 리스트: [d->a->b->c]
 - 삭제 후: [a->b->c]
-#### 처리 순서
+##### 처리 순서
 - removeNode = first
 - first = removeNode.next
 - removeNode.item = null, removeNode.next = null
-#### 시간 복잡도
+##### 시간 복잡도
 - O(1) → 매우 빠름
 
 ### 2️⃣ 중간 위치 삭제 (index > 0)
