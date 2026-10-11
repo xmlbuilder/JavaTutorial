@@ -387,7 +387,7 @@ graph TD
 - "d" 노드가 제거되고 first가 "a"를 가리키게 됨
 - "d"는 더 이상 참조되지 않으며 GC 대상이 됨
 
-### ✚ 중간 위치에 "e" 추가 (add(1, "e"))
+### 📌 중간 위치에 "e" 추가 (add(1, "e"))
 ```mermaid
 graph TD
     subgraph Before Add
@@ -407,7 +407,7 @@ graph TD
 - "e"가 "a"와 "b" 사이에 삽입됨
 - prev.next = newNode, newNode.next = removeNode.next 방식으로 연결
 
-### ❌ 중간 위치 "e" 삭제 (remove(1))
+### 📌 중간 위치 "e" 삭제 (remove(1))
 ```mermaid
 graph TD
     subgraph Before Remove
@@ -428,7 +428,7 @@ graph TD
 - "e"는 참조되지 않아 GC 대상이 됨
 
 
-## ✅ 정리
+### 📌 정리
 - 연결 리스트는 참조 변경만으로 구조를 수정할 수 있어 삽입/삭제가 유연함
 - 배열 리스트는 데이터 이동이 필요해 삽입/삭제에 비용이 큼
 - 중간 위치 작업은 두 구조 모두 O(n)이지만, 연결 리스트는 구조적으로 더 단순하고 직관적
@@ -436,8 +436,8 @@ graph TD
 ---
 
 
-## 🔁 확장 방향
-### ✅ 이중 연결 리스트 (Doubly Linked List)
+### 📌 확장 방향
+#### 🔹 이중 연결 리스트 (Doubly Linked List)
 ```java
 public class Node {
     Object item;
@@ -448,7 +448,7 @@ public class Node {
 
 - 양방향 탐색 가능
 - 삭제 시 이전 노드 참조로 더 빠르게 처리 가능
-### ✅ 마지막 노드 참조 추가
+#### 🔹 마지막 노드 참조 추가
 ```java
 public class LinkedList {
     private Node first;
@@ -456,14 +456,9 @@ public class LinkedList {
     private int size = 0;
 }
 ```
-
 - 마지막 노드에 직접 접근 가능 → 뒤쪽 삽입/삭제 O(1)로 개선
 
-
-
-
-
-## 🧠 결론
+### 📌 결론
 - 앞쪽 삽입/삭제가 많다면 → 연결 리스트가 유리
 - 조회/검색이 많고, 뒤쪽 삽입이 많다면 → 배열 리스트가 유리
 - 자바의 LinkedList는 이중 연결 리스트 + 마지막 노드 참조로 성능 최적화됨
@@ -472,17 +467,17 @@ public class LinkedList {
 
 
 
-## 🧠 핵심 개념 요약
-### ✅ 제네릭 도입 (<E>)
+### 📌 핵심 개념 요약
+#### 🔹 제네릭 도입 (<E>)
 - Object 대신 타입 매개변수 <E> 사용
 - 컴파일 시점에 타입 체크 가능 → 타입 안정성 확보
 - 다양한 타입의 리스트를 하나의 클래스 구조로 처리 가능
-### ✅ 중첩 클래스 사용 (static class Node<E>)
+#### 🔹 중첩 클래스 사용 (static class Node<E>)
 - Node는 리스트 내부에서만 사용되므로 외부 노출 불필요
 - MyLinkedListV3 내부에 Node를 정적 중첩 클래스로 선언
 - 구조적으로 깔끔하고 캡슐화 효과
 
-### 🔧 주요 기능 정리
+### 📌 주요 기능 정리
 
 | 메서드                      | 기능 설명                                      | 반환 타입 | 시간 복잡도 |
 |-----------------------------|-----------------------------------------------|------------|--------------|
@@ -495,7 +490,7 @@ public class LinkedList {
 | `size()`                    | 현재 리스트 크기 반환                         | `int`      | O(1)         |
 
 
-### 소스 코드
+### 📌 소스 코드
 ```java
 public class MyLinkedListV3<E> {
     private Node<E> first;
@@ -617,7 +612,7 @@ public class MyLinkedListV3<E> {
 ```
 
 
-### 🧪 실행 예시
+#### 🔹 실행 예시
 ```java
 MyLinkedListV3<String> stringList = new MyLinkedListV3<>();
 stringList.add("a");
@@ -643,7 +638,7 @@ System.out.println("integer = " + intList.get(0)); // integer = 1
 | 출력 구조       | `[a->b->c]` 형식으로 연결 상태 직관적으로 확인 가능      |
 
 
-## 🧠 결론
+### 📌 결론
 - MyLinkedListV3는 타입 안정성 + 구조적 명확성을 갖춘 사용자 정의 연결 리스트
 - 자바의 컬렉션 프레임워크처럼 제네릭 기반 자료구조를 직접 구현한 좋은 예시
 - 중첩 클래스를 통해 내부 전용 구조를 은닉하고, 유지보수성과 가독성을 높임
