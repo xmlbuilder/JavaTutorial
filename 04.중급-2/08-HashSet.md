@@ -261,9 +261,89 @@ set.contains(SET) = true
 ---
 
 
-# ✅ MyHashSetV2와 hashCode / equals 핵심 요약
+### 📌 MyHashSetV2와 hashCode / equals 핵심 요약
 
-## 📌 MyHashSetV2의 특징
+```java
+import java.util.Arrays;
+import java.util.LinkedList;
+
+public class MyHashSetV2 {
+
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
+
+    LinkedList<Object>[] buckets;
+    private int size = 0;
+    private int capacity;
+
+    public MyHashSetV2() {
+        this.capacity = DEFAULT_INITIAL_CAPACITY;
+        initBuckets();
+    }
+
+    public MyHashSetV2(int capacity) {
+        this.capacity = capacity;
+        initBuckets();
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initBuckets() {
+        buckets = new LinkedList[capacity];
+
+        for (int i = 0; i < capacity; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+    }
+
+    private int hashIndex(Object value) {
+        return Math.abs(value.hashCode()) % capacity;
+    }
+
+    public boolean add(Object value) {
+        int hashIndex = hashIndex(value);
+        LinkedList<Object> bucket = buckets[hashIndex];
+
+        if (bucket.contains(value)) {
+            return false;
+        }
+
+        bucket.add(value);
+        size++;
+        return true;
+    }
+
+    public boolean contains(Object value) {
+        int hashIndex = hashIndex(value);
+        return buckets[hashIndex].contains(value);
+    }
+
+    public boolean remove(Object value) {
+        int hashIndex = hashIndex(value);
+
+        boolean removed = buckets[hashIndex].remove(value);
+
+        if (removed) {
+            size--;
+        }
+
+        return removed;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        return "MyHashSetV2{" +
+                "buckets=" + Arrays.toString(buckets) +
+                ", size=" + size +
+                ", capacity=" + capacity +
+                '}';
+    }
+}
+```
+
+### 📌 MyHashSetV2의 특징
 
 | 항목               | 설명                                                              |
 |--------------------|-------------------------------------------------------------------|
@@ -274,7 +354,7 @@ set.contains(SET) = true
 | 다형성 활용         | `Object.hashCode()` → 실제 타입의 `hashCode()` 호출               |
 
 
-## 🧠 hashCode()와 equals()의 역할
+### 📌 hashCode()와 equals()의 역할
 
 | 메서드       | 역할                                                              |
 |--------------|-------------------------------------------------------------------|
@@ -284,20 +364,20 @@ set.contains(SET) = true
 - 해시 자료구조는 hashCode()로 인덱스를 찾고, equals()로 정확한 객체를 판별함
 - 두 메서드는 반드시 함께 재정의해야 정확한 저장/검색이 가능함
 
-## ❌ 구현하지 않았을 때 발생하는 문제
-### 1. hashCode()와 equals() 모두 미구현
+### 📌 구현하지 않았을 때 발생하는 문제
+#### 🔹 1. hashCode()와 equals() 모두 미구현
 - Object의 기본 기능 사용 → 참조값 기반 비교
 - 같은 값이라도 다른 인스턴스는 다른 해시 코드, 다른 비교 결과
 - 결과: 중복 저장됨, 검색 실패
-### 2. hashCode()만 구현, equals() 미구현
+#### 🔹 2. hashCode()만 구현, equals() 미구현
 - 해시 인덱스는 정확히 계산됨
 - 하지만 equals()가 참조값 비교이므로 중복 체크 실패
 - 결과: 중복 저장됨, 검색 실패
-### 3. hashCode()와 equals() 모두 구현
+#### 🔹 3. hashCode()와 equals() 모두 구현
 - id 값 기준으로 해시 코드 생성 및 논리적 비교
 - 결과: 중복 저장 방지, 검색 성공
 
-## 🔍 해시 충돌과 자바의 해시 함수
+### 📌 해시 충돌과 자바의 해시 함수
 
 | 항목             | 설명                                                                 |
 |------------------|----------------------------------------------------------------------|
@@ -308,7 +388,7 @@ set.contains(SET) = true
 | 자바 해시 함수     | 복잡한 연산으로 해시 코드 분포를 균일하게 설계 → 충돌 확률 최소화     |
 
 
-## ✅ 정리
+### 📌 정리
 - 해시 자료구조를 사용할 때는 반드시 hashCode()와 equals()를 함께 재정의해야 함
 - hashCode()는 해시 인덱스를 결정하고, equals()는 충돌 시 정확한 객체를 판별함
 - 자바의 기본 클래스(String, Integer 등)는 이미 두 메서드를 재정의해둠
@@ -317,8 +397,8 @@ set.contains(SET) = true
 
 ---
 
-# ✅ MyHashSetV3 핵심 요약
-## 📌 주요 특징
+### 📌 MyHashSetV3 핵심 요약
+### 📌 주요 특징
 
 | 항목               | 설명                                                              |
 |--------------------|-------------------------------------------------------------------|
@@ -329,8 +409,95 @@ set.contains(SET) = true
 | 타입 안전성         | 컴파일 타임에 타입 오류 방지 가능                                 |
 | 확장 가능성         | 다양한 자료구조 기반의 `Set` 구현 가능                            |
 
-## 🧠 코드 구조 요약
-### 인터페이스 정의
+### 📌 코드 구조 요약
+```java
+import java.util.Arrays;
+import java.util.LinkedList;
+
+public class MyHashSetV3<E> implements MySet<E> {
+
+    static final int DEFAULT_INITIAL_CAPACITY = 16;
+
+    private LinkedList<E>[] buckets;
+    private int size = 0;
+    private int capacity;
+
+    public MyHashSetV3() {
+        this(DEFAULT_INITIAL_CAPACITY);
+    }
+
+    public MyHashSetV3(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException(
+                    "capacity must be greater than 0");
+        }
+
+        this.capacity = capacity;
+        initBuckets();
+    }
+
+    @SuppressWarnings("unchecked")
+    private void initBuckets() {
+        buckets = (LinkedList<E>[]) new LinkedList[capacity];
+
+        for (int i = 0; i < capacity; i++) {
+            buckets[i] = new LinkedList<>();
+        }
+    }
+
+    private int hashIndex(Object value) {
+        return Math.abs(value.hashCode()) % capacity;
+    }
+
+    @Override
+    public boolean add(E value) {
+        int index = hashIndex(value);
+        LinkedList<E> bucket = buckets[index];
+
+        if (bucket.contains(value)) {
+            return false;
+        }
+
+        bucket.add(value);
+        size++;
+        return true;
+    }
+
+    @Override
+    public boolean contains(E value) {
+        int index = hashIndex(value);
+        return buckets[index].contains(value);
+    }
+
+    @Override
+    public boolean remove(E value) {
+        int index = hashIndex(value);
+
+        boolean removed = buckets[index].remove(value);
+
+        if (removed) {
+            size--;
+        }
+
+        return removed;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        return "MyHashSetV3{" +
+                "buckets=" + Arrays.toString(buckets) +
+                ", size=" + size +
+                ", capacity=" + capacity +
+                '}';
+    }
+}
+```
+
+#### 🔹 인터페이스 정의
 ```java
 public interface MySet<E> {
     boolean add(E element);
@@ -339,7 +506,7 @@ public interface MySet<E> {
 }
 ```
 
-### 제네릭 해시셋 구현
+#### 🔹 제네릭 해시셋 구현
 ```java
 public class MyHashSetV3<E> implements MySet<E> {
     private LinkedList<E>[] buckets;
@@ -354,7 +521,7 @@ public class MyHashSetV3<E> implements MySet<E> {
 ```
 
 
-### 🧪 실행 예제
+#### 🔹 실행 예제
 ```java
 MySet<String> set = new MyHashSetV3<>(10);
 set.add("A");
@@ -364,7 +531,7 @@ System.out.println(set);
 System.out.println("set.contains(\"A\") = " + set.contains("A"));
 ```
 
-#### 실행 결과
+#### 🔹 실행 결과
 ```java
 MyHashSetV3{buckets=[[], [], [], [], [], [A], [B], [C], [], []], size=3, capacity=10}
 set.contains("A") = true
@@ -373,8 +540,10 @@ set.contains("A") = true
 - "A"의 hashCode()는 65 → 65 % 10 = 5 → 인덱스 5에 저장
 - 제네릭 덕분에 String 타입만 저장 가능 → 타입 안정성 확보
 
-## ✅ 정리
+### 📌 정리
 - MyHashSetV3는 제네릭과 인터페이스를 도입해 타입 안정성과 확장성을 확보한 해시셋 구현체입니다.
 - MySet<E> 인터페이스를 통해 다양한 자료구조 기반의 Set 구현이 가능해졌습니다.
 - 제네릭을 사용함으로써 컴파일 타임에 타입 오류를 방지할 수 있고, 코드의 재사용성과 안정성이 높아졌습니다.
+
+---
 
