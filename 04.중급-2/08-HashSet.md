@@ -1,6 +1,14 @@
-# HashSet
+## 📘 HashSet
+- Java의 HashSet은 중복을 허용하지 않는 데이터를 저장하는 집합(Set) 자료구조입니다.
+- 내부적으로 해시 테이블(HashMap)을 사용하여 데이터를 관리합니다.
+- 주요 특징
+    - 중복 불가: 동일한 값은 한 번만 저장
+    - 순서 보장 안 함: 입력한 순서대로 저장되지 않음
+    - 빠른 검색: 추가, 삭제, 검색의 평균 시간 복잡도는 O(1)
+    - null 허용: null을 하나까지 저장 가능
+    - 동등성 판단: hashCode()와 equals() 사용
 
-## ✅ MyHashSetV1 핵심 요약
+### 📌 MyHashSetV1 핵심 요약
 | 항목               | 설명                                               |
 |--------------------|----------------------------------------------------|
 | 개선 대상           | `MyHashSetV0` (O(n) 성능 문제)                    |
@@ -11,7 +19,7 @@
 | 생성 방법           | `new MyHashSetV1(10)` 으로 용량 지정 가능         |
 
 
-## 📦 클래스 구조 요약
+### 📌 클래스 구조 요약
 ```java
 public class MyHashSetV1 {
     static final int DEFAULT_INITIAL_CAPACITY = 16;
@@ -72,7 +80,7 @@ public class MyHashSetV1 {
 ```
 
 
-## 🧪 테스트 예제
+### 📌 테스트 예제
 ```java
 public class MyHashSetV1Main {
     public static void main(String[] args) {
@@ -98,7 +106,7 @@ public class MyHashSetV1Main {
 ```
 
 
-## 🧠 실행 결과 해설
+#### 🔹 실행 결과 해설
 ```
 MyHashSetV1{buckets=[[], [1], [2], [], [14], [5], [], [], [8], [99, 9]], size=7}
 set.contains(9) = true
@@ -110,17 +118,17 @@ MyHashSetV1{buckets=[[], [1], [2], [], [14], [5], [], [], [8], [99]], size=6}
 - contains(9)는 해당 버킷에서 순차 탐색
 - remove(9)는 해당 버킷에서 제거 후 size 감소
 
-## ❓ 문자열을 저장하려면?
-현재 구현은 int 기반이므로 문자열은 직접 저장할 수 없습니다.  
-문자열을 저장하려면 다음과 같이 hashCode()를 활용해야 합니다:  
+### 📌 문자열을 저장하려면?
+- 현재 구현은 int 기반이므로 문자열은 직접 저장할 수 없습니다.  
+- 문자열을 저장하려면 다음과 같이 hashCode()를 활용해야 합니다:  
 ```java
 int hashIndex = Math.abs(value.hashCode()) % capacity;
 ```
 
 
-## ✅ 문자열 및 객체 기반 해시 인덱스 정리
+### 📌 문자열 및 객체 기반 해시 인덱스 정리
 
-### 📌 기본 개념
+#### 🔹 기본 개념
 
 | 항목             | 설명                                                                 |
 |------------------|----------------------------------------------------------------------|
@@ -133,7 +141,7 @@ int hashIndex = Math.abs(value.hashCode()) % capacity;
 
 
 
-### 🔤 문자열 해시 처리
+#### 🔹 문자열 해시 처리
 ```java
 static int hashCode(String str) {
     char[] charArray = str.toCharArray();
@@ -153,7 +161,7 @@ static int hashIndex(int value) {
 - "B" → 66 → 66 % 10 = 6
 - "AB" → 131 → 131 % 10 = 1
 
-### 🧠 ASCII 기반 문자 인코딩
+#### 🔹 ASCII 기반 문자 인코딩
 
 | 문자 | ASCII | 문자 | ASCII | 문자 | ASCII |
 |------|--------|------|--------|------|--------|
@@ -165,7 +173,7 @@ static int hashIndex(int value) {
 - 모든 문자는 고유한 숫자(ASCII)로 표현됨
 - 문자열은 각 문자의 ASCII 값을 합산하여 해시 코드 생성 가능
 
-### 👤 사용자 정의 객체 해시 처리
+#### 🔹 사용자 정의 객체 해시 처리
 ```java
 @Override
 public int hashCode() {
@@ -185,7 +193,7 @@ public boolean equals(Object o) {
 - hashCode()는 동일한 id에 대해 같은 해시 코드 반환
 - Member("idA")와 Member("idA")는 서로 다른 인스턴스지만 같은 해시 코드
 
-## 🔍 동일성과 동등성
+#### 🔹 동일성과 동등성
 
 | 비교 방식   | 의미                          | 예시           |
 |-------------|-------------------------------|----------------|
@@ -193,7 +201,7 @@ public boolean equals(Object o) {
 | `equals()`  | 동등성 (논리적으로 같은 값)   | `a.equals(b)` → true |
 
 
-## ✅ 핵심 요약
+#### 🔹 핵심 요약
 - 문자열은 ASCII 기반으로 해시 코드 생성 가능
 - 모든 객체는 hashCode()를 재정의하면 해시 자료구조에 저장 가능
 - 자바의 기본 클래스(String, Integer 등)는 이미 hashCode()를 재정의함
@@ -202,7 +210,7 @@ public boolean equals(Object o) {
 ---
 
 
-## ✅ MyHashSetV2 핵심 요약
+### 📌 MyHashSetV2 수정 핵심 요약
 
 | 항목               | 설명                                                              |
 |--------------------|-------------------------------------------------------------------|
@@ -215,12 +223,12 @@ public boolean equals(Object o) {
 | 적용 대상           | `String`, `Integer`, 사용자 정의 객체 등 모든 타입                |
 
 
-## 🧠 주요 변경 사항
+### 📌 주요 변경 사항
 - 제네릭 미사용: Object 타입으로 모든 데이터 수용
 - 해시 인덱스 계산 방식 변경: value.hashCode() → Math.abs() → % capacity
 - 버킷 구조: 각 인덱스에 LinkedList<Object>를 저장하여 충돌 처리
 
-## 📦 예제 실행 흐름
+### 📌 예제 실행 흐름
 ```java
 MyHashSetV2 set = new MyHashSetV2(10);
 set.add("A"); // hashCode = 65 → index 5
@@ -232,7 +240,7 @@ set.add("SET"); // hashCode = 81986 → index 6 (충돌)
 - "SET"과 "B"는 같은 인덱스(6)에 저장됨 → 체이닝으로 처리
 - contains("SET")는 인덱스 6의 리스트에서 순차 검색
 
-## 🧪 실행 결과 요약
+### 📌 실행 결과 요약
 ```
 MyHashSetV2{buckets=[[], [AB], [], [], [], [A], [B, SET], [C], [D], []], size=6, capacity=10}
 A.hashCode=65
@@ -245,7 +253,7 @@ set.contains(SET) = true
 - 해시 인덱스는 hashCode % 10으로 계산됨
 - "SET"은 "B"와 충돌하지만 리스트에 함께 저장되어 검색 가능
 
-## 🧠 실무적 인사이트
+### 📌 실무적 인사이트
 - 자바의 모든 객체는 hashCode()를 가지고 있으며, 대부분의 클래스는 이를 재정의함
 - 사용자 정의 클래스도 equals()와 hashCode()를 재정의하면 해시 기반 자료구조에 안전하게 저장 가능
 - Object.hashCode()는 참조값 기반이므로 논리적 비교를 위해 반드시 오버라이딩 필요
