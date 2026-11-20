@@ -1,5 +1,5 @@
-# 📦 Map 인터페이스 개요
-## 🔑 Map 구현체 특징 요약
+## 📘 Map 인터페이스 개요
+### 📌 Map 구현체 특징 요약
 
 | 항목               | HashMap                  | LinkedHashMap              | TreeMap                    |
 |--------------------|--------------------------|-----------------------------|----------------------------|
@@ -13,9 +13,9 @@
 
 
 
-## 🧪 주요 메서드별 샘플과 설명
-### 1. put(K key, V value)
-키-값 저장 (같은 키면 값 덮어쓰기)
+### 📌 주요 메서드별 샘플과 설명
+#### 🔹 1. put(K key, V value)
+- 키-값 저장 (같은 키면 값 덮어쓰기)
 ```java
 Map<String, Integer> map = new HashMap<>();
 map.put("A", 100);
@@ -24,8 +24,8 @@ System.out.println(map); // {A=200}
 ```
 
 
-### 2. putIfAbsent(K key, V value)
-키가 없을 때만 저장
+#### 🔹 2. putIfAbsent(K key, V value)
+- 키가 없을 때만 저장
 ```java
 map.putIfAbsent("A", 300); // 이미 있으므로 무시
 map.putIfAbsent("B", 400); // 없으므로 저장
@@ -33,24 +33,24 @@ System.out.println(map); // {A=200, B=400}
 ```
 
 
-### 3. get(Object key)
-키로 값 조회
+#### 🔹 3. get(Object key)
+- 키로 값 조회
 ```java
 Integer score = map.get("A");
 System.out.println(score); // 200
 ```
 
 
-### 4. getOrDefault(Object key, V defaultValue)
-키가 없으면 기본값 반환
+#### 🔹 4. getOrDefault(Object key, V defaultValue)
+- 키가 없으면 기본값 반환
 ```java
 Integer score = map.getOrDefault("C", 0);
 System.out.println(score); // 0
 ```
 
 
-### 5. remove(Object key)
-키-값 제거
+#### 🔹 5. remove(Object key)
+- 키-값 제거
 ```java
 map.remove("A");
 System.out.println(map); // {B=400}
